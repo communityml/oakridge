@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="color-scheme" content="light" />
+  <title>Oakridge Reignited — Help Oakridge Thrive</title>
+  <meta name="description" content="Oakridge Reignited: Help Oakridge Private School survive and thrive." />
+
+  <style>
+    :root{
+      /* Pastel, daytime-friendly palette */
+      --bg0:#fbfbff;
+      --bg1:#f5fbff;
+      --ink:#132033;
+      --muted:#4a5a70;
+      --card:#ffffffcc;
+      --stroke:#dbe6f3;
+      --shadow: 0 12px 40px rgba(16, 34, 56, .10);
+      --shadow2: 0 8px 24px rgba(16, 34, 56, .08);
+
+      --accent:#3a7bd5;       /* soft blue */
+      --accent2:#6dd5c6;      /* mint */
+      --accent3:#f7b2d9;      /* pink */
+      --accent4:#ffd8a8;      /* peach */
+      --ok:#2bb673;
+
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1080px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 700px at 20% -10%, rgba(109,213,198,.35), transparent 55%),
+        radial-gradient(900px 600px at 100% 10%, rgba(58,123,213,.22), transparent 55%),
+        radial-gradient(1000px 650px at 30% 115%, rgba(247,178,217,.22), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg0));
+      line-height:1.45;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    a{ color:var(--accent); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding: 20px 16px 64px; }
+
+    /* Top announcement */
+    .announce{
+      position:sticky; top:0; z-index:50;
+      margin:0; padding: 10px 12px;
+      background: rgba(255,255,255,.88);
+      border-bottom: 1px solid var(--stroke);
+      backdrop-filter: blur(10px);
+    }
+    .announce .inner{
+      max-width:var(--max);
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding: 0 4px;
+      color: var(--ink);
+      font-size: 14px;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 6px 10px;
+      border:1px solid var(--stroke);
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(109,213,198,.18), rgba(58,123,213,.12));
+      box-shadow: 0 6px 16px rgba(16,34,56,.06);
+      white-space:nowrap;
+    }
+    .pill b{ font-weight:700; }
+    .announce .spacer{ flex:1; }
+    .announce .cta{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(58,123,213,.25);
+      background: rgba(58,123,213,.10);
+      color: var(--ink);
+      font-weight: 650;
+      white-space:nowrap;
+    }
+
+    /* Hero */
+    .hero{
+      margin-top: 14px;
+      border: 1px solid var(--stroke);
+      background: linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,255,255,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(600px 260px at 10% 20%, rgba(109,213,198,.28), transparent 60%),
+        radial-gradient(700px 280px at 90% 10%, rgba(247,178,217,.22), transparent 60%),
+        radial-gradient(700px 360px at 60% 100%, rgba(255,216,168,.25), transparent 60%);
+      pointer-events:none;
+      filter:saturate(1.05);
+    }
+    .hero .grid{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: 20px;
+    }
+    @media (min-width: 860px){
+      .hero .grid{ grid-template-columns: 1.2fr .8fr; padding: 28px; gap: 22px; }
+    }
+
+    .brandRow{
+      display:flex; align-items:center; gap:12px;
+    }
+    .seal{
+      width: 52px; height:52px;
+      border-radius: 14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.9);
+      box-shadow: var(--shadow2);
+      display:grid; place-items:center;
+      overflow:hidden;
+      flex: 0 0 auto;
+    }
+    /* Later: swap this SVG for <img src="docs/seal.png" ...> */
+    .seal svg{ width: 42px; height:42px; opacity:.9; }
+    .title{
+      margin:0;
+      font-size: 34px;
+      letter-spacing:-.02em;
+      line-height:1.05;
+    }
+    .subtitle{
+      margin: 8px 0 0;
+      font-size: 16px;
+      color: var(--muted);
+    }
+    @media (min-width: 520px){
+      .title{ font-size: 44px; }
+      .subtitle{ font-size: 17px; }
+    }
+
+    .actions{
+      margin-top: 14px;
+      display:flex; flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.9);
+      color: var(--ink);
+      font-weight: 700;
+      box-shadow: 0 10px 20px rgba(16,34,56,.08);
+      text-decoration:none;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+      min-height: 44px;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 14px 26px rgba(16,34,56,.10); text-decoration:none; }
+    .btn.primary{
+      border-color: rgba(58,123,213,.25);
+      background: linear-gradient(90deg, rgba(58,123,213,.16), rgba(109,213,198,.16));
+    }
+    .btn .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, var(--accent2), var(--accent));
+      box-shadow: 0 0 0 4px rgba(109,213,198,.18);
+    }
+
+    .heroCard{
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.78);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow2);
+      padding: 14px 14px 12px;
+    }
+    .heroCard h3{
+      margin:0 0 8px;
+      font-size: 14px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+    .heroCard .big{
+      font-size: 18px;
+      margin:0 0 6px;
+      font-weight: 750;
+    }
+    .heroCard .small{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .heroCard .row{
+      display:flex; gap:10px; align-items:flex-start; justify-content:space-between;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(74,90,112,.20);
+    }
+    .heroCard .row a{
+      font-weight:700;
+      white-space:nowrap;
+    }
+
+    /* Sections */
+    .section{
+      margin-top: 22px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.72);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .sectionHeader{
+      padding: 18px 18px 10px;
+      border-bottom: 1px solid rgba(219,230,243,.8);
+      background: linear-gradient(90deg, rgba(58,123,213,.06), rgba(109,213,198,.06), rgba(247,178,217,.06));
+    }
+    .kicker{
+      margin:0 0 6px;
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .sectionHeader h2{
+      margin:0;
+      font-size: 22px;
+      letter-spacing:-.01em;
+    }
+    @media (min-width: 520px){
+      .sectionHeader h2{ font-size: 24px; }
+    }
+    .sectionBody{ padding: 16px 18px 18px; }
+    .prose p{ margin: 0 0 12px; color: var(--ink); }
+    .prose .muted{ color: var(--muted); }
+
+    /* Pillars */
+    .pillars{
+      margin-top: 12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.80);
+      font-weight:650;
+      color: var(--ink);
+      font-size: 14px;
+    }
+    .tag .heart{ filter:saturate(1.1); }
+
+    /* Stats */
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+    @media (max-width: 520px){
+      .stats{ grid-template-columns: 1fr; }
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.82);
+      padding: 14px 14px 12px;
+      box-shadow: 0 10px 18px rgba(16,34,56,.06);
+    }
+    .stat .num{
+      font-size: 26px;
+      font-weight: 850;
+      letter-spacing:-.02em;
+      margin:0;
+    }
+    .stat .label{
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height:1.25;
+    }
+
+    /* Life at Oakridge cards */
+    .cards{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    @media (min-width: 860px){
+      .cards{ grid-template-columns: 1fr 1fr; }
+    }
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.82);
+      box-shadow: 0 10px 18px rgba(16,34,56,.06);
+      padding: 14px;
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+    }
+    .thumb{
+      width: 56px; height:56px;
+      border-radius: 16px;
+      border:1px solid var(--stroke);
+      background:
+        radial-gradient(18px 18px at 30% 30%, rgba(109,213,198,.35), transparent 65%),
+        radial-gradient(22px 22px at 70% 30%, rgba(58,123,213,.25), transparent 65%),
+        radial-gradient(24px 24px at 45% 80%, rgba(247,178,217,.28), transparent 65%),
+        rgba(255,255,255,.75);
+      flex: 0 0 auto;
+      display:grid; place-items:center;
+      color: rgba(19,32,51,.55);
+      font-weight: 900;
+    }
+    /* Later: replace with <img src="docs/eggdrop.jpg" class="thumbImg"> etc */
+    .thumbImg{ width:56px; height:56px; object-fit:cover; border-radius: 16px; border:1px solid var(--stroke); }
+
+    .card h3{ margin:0; font-size: 16px; }
+    .card p{ margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+    .card .meta{ margin-top: 10px; font-size: 14px; font-weight: 700; }
+
+    /* Donor tiers */
+    .tiers{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (min-width: 860px){
+      .tiers{ grid-template-columns: 1fr 1fr; }
+    }
+    .tier{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.84);
+      box-shadow: 0 10px 18px rgba(16,34,56,.06);
+      padding: 14px;
+    }
+    .tier .head{
+      display:flex; justify-content:space-between; align-items:baseline; gap:10px;
+      margin-bottom: 8px;
+    }
+    .tier h3{ margin:0; font-size: 16px; }
+    .tier .range{
+      margin:0;
+      font-weight: 900;
+      letter-spacing:-.01em;
+    }
+    .tier p{ margin: 8px 0 0; color: var(--muted); font-size: 14px; }
+    .note{
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border:1px dashed rgba(74,90,112,.25);
+      background: rgba(255,255,255,.7);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Donate section */
+    .donateBox{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      margin-top: 12px;
+      padding: 14px;
+      border: 1px solid rgba(58,123,213,.22);
+      background: linear-gradient(90deg, rgba(58,123,213,.10), rgba(109,213,198,.10));
+      border-radius: var(--radius);
+    }
+    .donateBox .row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .contactLine{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px 14px;
+      align-items:center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .contactLine a{ font-weight: 800; }
+
+    /* Footer */
+    footer{
+      margin-top: 22px;
+      padding: 16px 6px 0;
+      color: var(--muted);
+      font-size: 13px;
+      text-align:center;
+    }
+
+    /* Accessibility helpers */
+    .srOnly{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0); border:0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sticky announcement bar -->
+  <div class="announce" role="region" aria-label="Announcement">
+    <div class="inner">
+      <span class="pill" aria-live="polite">
+        <b id="openHouseLabel">Open House</b>
+        <span>— Sunday, March 1, 2026 · 1–3pm</span>
+      </span>
+      <span class="spacer"></span>
+      <a class="cta" href="#youre-invited" aria-label="See open house details">
+        See details ↓
+      </a>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero" aria-label="Oakridge Reignited">
+      <div class="grid">
+        <div>
+          <div class="brandRow">
+            <div class="seal" aria-hidden="true">
+              <!-- Placeholder seal icon (replace with <img src="docs/seal.png" alt="Oakridge Private School Seal"> later) -->
+              <svg viewBox="0 0 64 64" fill="none">
+                <path d="M32 6c10.5 0 19 8.5 19 19 0 14-19 33-19 33S13 39 13 25C13 14.5 21.5 6 32 6Z" stroke="rgba(19,32,51,.55)" stroke-width="2.5"/>
+                <path d="M22 26c6-10 14-10 20 0" stroke="rgba(19,32,51,.45)" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M24 34c5 4 11 4 16 0" stroke="rgba(19,32,51,.45)" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h1 class="title">Oakridge<br/>Reignited</h1>
+              <p class="subtitle">Reawakened. Reimagined. Reignited.</p>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="#donate">
+              <span class="dot" aria-hidden="true"></span>
+              Donate to Oakridge
+            </a>
+            <a class="btn" href="#make-your-gift">
+              Make Your Gift →
+            </a>
+          </div>
+        </div>
+
+        <aside class="heroCard" aria-label="Quick info">
+          <h3>Open House</h3>
+          <p class="big">Sunday, March 1, 2026 · 1–3 pm</p>
+          <p class="small">19111 Villa Park Rd, Orange, CA 92869</p>
+          <div class="row">
+            <a href="#youre-invited">Details</a>
+            <a href="https://www.oakridgeschool.org/" target="_blank" rel="noopener">oakridgeschool.org</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- A Message to Our Community -->
+    <section class="section" id="message">
+      <div class="sectionHeader">
+        <p class="kicker">A Message to Our Community</p>
+        <h2>Oakridge Is Not Going Anywhere.</h2>
+      </div>
+      <div class="sectionBody prose">
+        <p>For over 45 years, Oakridge Private School has been more than a school — it's been a family. A place where children learn to lead with character, think with curiosity, and grow with love.</p>
+        <p>We've faced tough times. But our community has always been our greatest strength. Right now, we need that strength more than ever — and together, we're writing a bold new chapter.</p>
+
+        <div class="pillars" aria-label="Oakridge pillars">
+          <span class="tag"><span class="heart" aria-hidden="true">❤️</span> Love</span>
+          <span class="tag">Character</span>
+          <span class="tag">Diversity</span>
+          <span class="tag">Innovation</span>
+          <span class="tag">Community</span>
+          <span class="tag">High Standards</span>
+        </div>
+        <p class="muted" style="margin-top:10px;">These are the six pillars that have always defined Oakridge. They always will.</p>
+      </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="section" id="our-story">
+      <div class="sectionHeader">
+        <p class="kicker">Our Story</p>
+        <h2>45 Years of Excellence</h2>
+      </div>
+      <div class="sectionBody prose">
+        <p>Oakridge was founded by Mr. and Mrs. Burry, who recognized a growing educational need in Orange County. After spending two decades teaching in the public school system, they built a school rooted in small class sizes, strong academics, and genuine care for every child.</p>
+        <p>“The greatest testament to Oakridge's success is the many former students who have chosen to enroll their own children.”<br/>
+        What began with just 9 students has grown into a beloved institution — one where alumni come back as parents because they know what Oakridge means.</p>
+
+        <div class="stats" aria-label="Oakridge highlights">
+          <div class="stat">
+            <p class="num">45+</p>
+            <p class="label">Years of excellence</p>
+          </div>
+          <div class="stat">
+            <p class="num">K–8</p>
+            <p class="label">Preschool through 8th grade</p>
+          </div>
+          <div class="stat">
+            <p class="num">#1</p>
+            <p class="label">Best single-campus private school, Parenting OC 2024</p>
+          </div>
+        </div>
+
+        <p style="margin-top:12px;">That legacy is worth fighting for. And that is exactly what we are doing.</p>
+      </div>
+    </section>
+
+    <!-- Life at Oakridge -->
+    <section class="section" id="life">
+      <div class="sectionHeader">
+        <p class="kicker">Life at Oakridge</p>
+        <h2>This Is What We're Fighting For</h2>
+      </div>
+      <div class="sectionBody prose">
+        <p>Science, heart, and community — all in a day's work at Oakridge.</p>
+
+        <div class="cards" aria-label="Life at Oakridge moments">
+          <div class="card">
+            <div class="thumb" aria-hidden="true">✦</div>
+            <div>
+              <h3>The egg drop — pure Oakridge creativity and joy.</h3>
+              <div class="meta">
+                <a href="https://www.instagram.com/reel/DVPMdUFkgTh/" target="_blank" rel="noopener">View on Instagram</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="thumb" aria-hidden="true">✦</div>
+            <div>
+              <h3>The Principal's Award — recognizing students who live the Oakridge way.</h3>
+              <div class="meta">
+                <a href="https://www.instagram.com/p/DVPMdUFkgTh/" target="_blank" rel="noopener">View on Instagram</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="thumb" aria-hidden="true">✦</div>
+            <div>
+              <h3>Mrs. Park — Top 10 Teacher in Orange County (1st Grade).</h3>
+              <div class="meta">
+                <a href="https://www.instagram.com/p/DUbpGbeyUN1/" target="_blank" rel="noopener">View on Instagram</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="thumb" aria-hidden="true">✦</div>
+            <div>
+              <h3>Mr. Thatcher — Top 10 Teacher in Orange County (Middle School Science).</h3>
+              <div class="meta">
+                <a href="https://www.instagram.com/p/DUujSizSVUz/" target="_blank" rel="noopener">View on Instagram</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tip for later images:
+          Replace .thumb divs with:
+          <img class="thumbImg" src="docs/eggdrop.jpg" alt="Students doing an egg drop project">
+        -->
+      </div>
+    </section>
+
+    <!-- You're Invited -->
+    <section class="section" id="youre-invited">
+      <div class="sectionHeader">
+        <p class="kicker" id="inviteKicker">TOMORROW</p>
+        <h2>You're Invited</h2>
+      </div>
+      <div class="sectionBody prose">
+        <p>Come see Oakridge for yourself. Meet the teachers. Walk the campus. Feel what 45 years of community looks like.</p>
+        <p><b>Sunday, March 1, 2026</b> · 1–3 pm<br/>19111 Villa Park Rd, Orange, CA 92869</p>
+        <p>
+          <a href="https://www.instagram.com/p/DUbCK5yCdRR/" target="_blank" rel="noopener">View Open House Flyer on Instagram</a>
+        </p>
+        <p>Call Us: <a href="tel:+17142881432">(714) 288-1432</a> · <a href="https://www.oakridgeschool.org/" target="_blank" rel="noopener">oakridgeschool.org</a></p>
+      </div>
+    </section>
+
+    <!-- Donor Recognition -->
+    <section class="section" id="donors">
+      <div class="sectionHeader">
+        <p class="kicker">Donor Recognition</p>
+        <h2>The Legacy Oak Tree</h2>
+      </div>
+      <div class="sectionBody prose">
+        <p>Every gift — at every level — will be permanently honored as part of the Legacy Oak Tree: a beautiful physical installation celebrating the donors who helped write this new chapter of Oakridge history.</p>
+        <p class="muted">The oak tree represents strength, legacy, renewal, and future growth.</p>
+
+        <div class="tiers" aria-label="Donor recognition levels">
+          <div class="tier">
+            <div class="head">
+              <h3>Yearbook Recognition</h3>
+              <p class="range">$100 – $500</p>
+            </div>
+            <p>Your name listed in the 2025–26 yearbook under “Founding Supporters of the New Chapter.” Includes digital recognition on the school's donor page.</p>
+            <div class="note">⏰ Deadline: March 21, 2026</div>
+          </div>
+
+          <div class="tier">
+            <div class="head">
+              <h3>Acorn Circle</h3>
+              <p class="range">$5,000 – $9,999</p>
+            </div>
+            <p>Custom engraved small oak leaf on the Legacy Oak Tree installation. Invitation to the unveiling ceremony.</p>
+          </div>
+
+          <div class="tier">
+            <div class="head">
+              <h3>Sapling Society</h3>
+              <p class="range">$10,000 – $24,999</p>
+            </div>
+            <p>Medium engraved oak leaf. Recognition in event programs and annual reports.</p>
+          </div>
+
+          <div class="tier">
+            <div class="head">
+              <h3>Branch Builders</h3>
+              <p class="range">$25,000 – $99,999</p>
+            </div>
+            <p>Large engraved leaf with prominent placement and recognition across all school communications.</p>
+          </div>
+
+          <div class="tier">
+            <div class="head">
+              <h3>Oak Pillars</h3>
+              <p class="range">$100,000 – $249,999</p>
+            </div>
+            <p>Premium leaf near the trunk — symbolizing foundational impact. Press recognition and a dedicated feature story.</p>
+          </div>
+
+          <div class="tier">
+            <div class="head">
+              <h3>Building Naming Opportunity</h3>
+              <p class="range">$250,000+</p>
+            </div>
+            <p>Your name on one of the school buildings — a permanent legacy. Includes ribbon-cutting ceremony, press announcement, and permanent signage.</p>
+          </div>
+        </div>
+
+        <div class="note" style="margin-top:12px;">Legacy Oak Tree installations: deadline May 31, 2026</div>
+
+        <div class="actions" style="margin-top:14px;">
+          <a class="btn primary" href="#make-your-gift">
+            <span class="dot" aria-hidden="true"></span>
+            Make Your Gift →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Make Your Gift Today -->
+    <section class="section" id="make-your-gift">
+      <div class="sectionHeader">
+        <p class="kicker">Help Oakridge Survive &amp; Thrive</p>
+        <h2>Make Your Gift Today</h2>
+      </div>
+      <div class="sectionBody prose" id="donate">
+        <p>Every dollar goes directly to keeping Oakridge open, thriving, and true to its mission for every student and every family.</p>
+
+        <p><b>Donate or ask questions:</b><br/>
+          <a href="mailto:donate@oakridgeschool.org">donate@oakridgeschool.org</a>
+        </p>
+
+        <p class="muted">We accept Zelle, Venmo, check, and more.<br/>Donations may be tax-deductible.</p>
+
+        <div class="donateBox" role="region" aria-label="Donate quick actions">
+          <div class="row">
+            <a class="btn primary" href="mailto:donate@oakridgeschool.org?subject=Oakridge%20Donation%20Question">
+              <span class="dot" aria-hidden="true"></span>
+              Email Donate Team
+            </a>
+            <a class="btn" href="tel:+17142881432">Call (714) 288-1432</a>
+          </div>
+          <div class="contactLine">
+            <span><b>Donate Now</b></span>
+            <span>·</span>
+            <a href="mailto:donate@oakridgeschool.org">donate@oakridgeschool.org</a>
+            <span>·</span>
+            <a href="tel:+17142881432">(714) 288-1432</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <!-- Later: add a footer image from docs/ if you want -->
+      <div style="margin-top:10px;">
+        <b>Oakridge Private School</b><br/>
+        Preschool through 8th Grade<br/>
+        19111 Villa Park Rd, Orange, CA 92869<br/>
+        <a href="tel:+17142881432">(714) 288-1432</a> ·
+        <a href="https://www.oakridgeschool.org/" target="_blank" rel="noopener">oakridgeschool.org</a>
+      </div>
+      <div style="margin-top:10px;">© 2026 Oakridge Private School. All rights reserved.</div>
+    </footer>
+  </main>
+
+  <script>
+    // Smooth in-page navigation (nice on mobile)
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const id = a.getAttribute("href");
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.pushState(null, "", id);
+    });
+
+    // Dynamic "TOMORROW" label so the page doesn't go stale.
+    // Open House: Sunday, March 1, 2026 13:00 (local)
+    (function setOpenHouseLabels(){
+      const eventStart = new Date(2026, 2, 1, 13, 0, 0); // month is 0-indexed (2 = March)
+      const now = new Date();
+
+      // Normalize to local midnight for "today/tomorrow" wording
+      const d0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const d1 = new Date(eventStart.getFullYear(), eventStart.getMonth(), eventStart.getDate());
+      const days = Math.round((d1 - d0) / (24*60*60*1000));
+
+      const top = document.getElementById("openHouseLabel");
+      const kicker = document.getElementById("inviteKicker");
+
+      let label = "Open House";
+      let kick = "TOMORROW";
+
+      if (days === 0) { label = "Open House is TODAY"; kick = "TODAY"; }
+      else if (days === 1) { label = "Open House is TOMORROW"; kick = "TOMORROW"; }
+      else if (days > 1 && days <= 7) { label = "Open House is THIS WEEK"; kick = "THIS WEEK"; }
+      else if (days < 0) { label = "Open House"; kick = "OPEN HOUSE"; }
+      else { label = "Open House"; kick = "OPEN HOUSE"; }
+
+      if (top) top.textContent = label;
+      if (kicker) kicker.textContent = kick;
+    })();
+  </script>
+</body>
+</html>
