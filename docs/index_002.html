@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="color-scheme" content="light" />
+  <title>Oakridge Reignited — A Community Effort</title>
+  <meta name="description" content="Oakridge Reignited: Oakridge parents and community members coming together to support Oakridge’s future." />
+
+  <style>
+    :root{
+      /* Oakridge-adjacent (navy + red) but softened for a modern, friendly feel */
+      --navy: #0f2647;
+      --red:  #b01f2e;
+
+      --bg:   #fbfcff;
+      --bg2:  #f4f7ff;
+      --card: #ffffff;
+      --ink:  #0f1b2d;
+      --muted:#516173;
+
+      --line: rgba(15, 38, 71, .12);
+      --shadow: 0 10px 30px rgba(15, 27, 45, .10);
+
+      --pastelBlue:  rgba(75, 123, 229, .14);
+      --pastelRose:  rgba(242, 153, 180, .16);
+      --pastelMint:  rgba(125, 216, 196, .16);
+      --pastelPeach: rgba(255, 201, 160, .18);
+
+      --radius: 18px;
+      --max: 1080px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, var(--bg2), var(--bg));
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      line-height: 1.5;
+    }
+
+    a{ color: var(--navy); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 18px 16px 56px; }
+
+    /* Top bar: simple, not salesy */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(251,252,255,.90);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .topbarInner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 10px 16px;
+      display:flex;
+      align-items:center;
+      gap: 12px;
+    }
+    .topbar .mini{
+      font-size: 13px;
+      color: var(--muted);
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+    .topbar .spacer{ flex:1; }
+    .topbtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 12px;
+      min-height: 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(176,31,46,.22);
+      color: var(--red);
+      background: rgba(176,31,46,.06);
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    /* Hero */
+    .hero{
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .heroTop{
+      padding: 18px 18px 0;
+    }
+    .accentBar{
+      height: 6px;
+      width: 100%;
+      background:
+        linear-gradient(90deg,
+          var(--pastelMint),
+          var(--pastelBlue),
+          var(--pastelRose),
+          var(--pastelPeach)
+        );
+      border-bottom: 1px solid var(--line);
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 16px 18px 18px;
+    }
+    @media (min-width: 860px){
+      .heroGrid{ grid-template-columns: 1.25fr .75fr; gap: 18px; padding: 18px 22px 22px; }
+      .heroTop{ padding: 22px 22px 0; }
+    }
+
+    .brandRow{
+      display:flex;
+      align-items:flex-start;
+      gap: 12px;
+    }
+    .logoBox{
+      width: 54px; height: 54px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      display:grid;
+      place-items:center;
+      background:
+        linear-gradient(180deg, rgba(15,38,71,.03), rgba(15,38,71,.00));
+      overflow:hidden;
+      flex: 0 0 auto;
+    }
+    .logoBox img{
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+    h1{
+      margin:0;
+      font-size: 36px;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+    }
+    @media (min-width: 520px){
+      h1{ font-size: 44px; }
+    }
+    .sub{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 52ch;
+    }
+
+    .ctaRow{
+      margin-top: 14px;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 12px 14px;
+      min-height: 44px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font-weight: 800;
+      box-shadow: 0 8px 20px rgba(15,27,45,.08);
+      text-decoration: none;
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 12px 26px rgba(15,27,45,.10); text-decoration:none; }
+
+    .btn.primary{
+      border-color: rgba(176,31,46,.22);
+      background: linear-gradient(90deg, rgba(176,31,46,.10), rgba(15,38,71,.06));
+      color: var(--navy);
+    }
+    .btn.primary .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--red);
+      box-shadow: 0 0 0 4px rgba(176,31,46,.12);
+    }
+
+    .sideCard{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(15,38,71,.03), rgba(15,38,71,.00));
+      padding: 14px;
+    }
+    .sideCard h3{
+      margin:0 0 8px;
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .sideCard .big{
+      margin:0 0 8px;
+      font-size: 16px;
+      font-weight: 850;
+      color: var(--navy);
+    }
+    .sideCard .small{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .sideLinks{
+      margin-top: 12px;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 14px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    /* Sections */
+    .section{
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--card);
+      box-shadow: 0 8px 24px rgba(15,27,45,.06);
+      overflow:hidden;
+    }
+    .sectionHead{
+      padding: 16px 18px 10px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, var(--pastelMint), rgba(255,255,255,.0));
+    }
+    .kicker{
+      margin:0 0 6px;
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .sectionHead h2{
+      margin:0;
+      font-size: 22px;
+      letter-spacing:-.01em;
+      color: var(--navy);
+    }
+    .sectionBody{
+      padding: 14px 18px 18px;
+    }
+    .prose p{ margin: 0 0 12px; }
+    .prose p:last-child{ margin-bottom:0; }
+    .muted{ color: var(--muted); }
+
+    /* Simple card rows for “How you can help” */
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    @media (min-width: 860px){
+      .grid2{ grid-template-columns: 1fr 1fr; }
+    }
+    .miniCard{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 14px;
+    }
+    .miniCard h3{
+      margin:0 0 6px;
+      font-size: 16px;
+      color: var(--ink);
+    }
+    .miniCard p{ margin:0; color: var(--muted); font-size: 14px; }
+
+    /* “Moments” links */
+    .moments{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    @media (min-width: 860px){
+      .moments{ grid-template-columns: 1fr 1fr; }
+    }
+    .moment{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      background: #fff;
+      display:flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .moment b{ color: var(--ink); }
+    .moment a{ font-weight: 850; }
+
+    /* Footer */
+    footer{
+      margin-top: 18px;
+      padding: 16px 4px 0;
+      text-align:center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .fineprint{
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(81,97,115,.95);
+    }
+
+    /* Accessibility */
+    .srOnly{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0); border:0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar" role="region" aria-label="Quick actions">
+    <div class="topbarInner">
+      <div class="mini">
+        <span><b>Oakridge Reignited</b> — a parent &amp; community effort</span>
+        <span>•</span>
+        <a href="#meet-us">Meet us at Open House</a>
+      </div>
+      <div class="spacer"></div>
+      <a class="topbtn" href="#donate">How to donate</a>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="hero" aria-label="Oakridge Reignited hero">
+      <div class="accentBar" aria-hidden="true"></div>
+
+      <div class="heroTop">
+        <div class="brandRow">
+          <div class="logoBox" aria-label="Oakridge logo">
+            <!-- Using the official SVG directly (external image is OK). -->
+            <img src="https://www.oakridgeschool.org/pics/school_logo.svg" alt="Oakridge Private School tree logo" />
+          </div>
+          <div>
+            <h1>Oakridge Reignited</h1>
+            <p class="sub">
+              We’re a group of Oakridge parents and community members working to bring families,
+              alumni, grandparents, staff, teachers, administrators, and supporters together — to help
+              Oakridge’s legacy endure.
+            </p>
+
+            <div class="ctaRow">
+              <a class="btn primary" href="#how-to-help">
+                <span class="dot" aria-hidden="true"></span>
+                Ways to help (fast)
+              </a>
+              <a class="btn" href="#story">Read the full story</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="heroGrid">
+        <div class="sectionBody prose" style="padding:0;">
+          <p>
+            Oakridge has meant so much to so many families. Right now, the school needs the community’s energy,
+            ideas, and support — and we’re organizing a simple on-ramp for people who want to help.
+          </p>
+          <p class="muted">
+            This page is built to be quick to read on your phone — especially if you scanned a QR code at Open House.
+          </p>
+        </div>
+
+        <aside class="sideCard" aria-label="Quick facts">
+          <h3>School basics</h3>
+          <p class="big">Preschool through 8th grade</p>
+          <p class="small">
+            Oakridge Private School<br/>
+            19111 Villa Park Rd, Orange, CA 92869<br/>
+            <a href="tel:+17142881432">(714) 288-1432</a>
+          </p>
+
+          <div class="sideLinks">
+            <a class="chip" href="https://www.oakridgeschool.org/" target="_blank" rel="noopener">Official website</a>
+            <a class="chip" href="#meet-us">Open House info</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="how-to-help">
+      <div class="sectionHead">
+        <p class="kicker">Start here</p>
+        <h2>Ways you can help (pick one)</h2>
+      </div>
+      <div class="sectionBody">
+        <div class="grid2">
+          <div class="miniCard">
+            <h3>1) Donate</h3>
+            <p>
+              If you’re able, a donation helps stabilize the school and fund the essentials.
+              We’ll point you to the best way to give and make sure your support is recognized.
+            </p>
+          </div>
+          <div class="miniCard">
+            <h3>2) Volunteer</h3>
+            <p>
+              Help with outreach, events, communications, alumni connections, fundraising coordination, and more.
+              Even one hour helps.
+            </p>
+          </div>
+          <div class="miniCard">
+            <h3>3) Connect us</h3>
+            <p>
+              Know an alum, grandparent, local business, or community leader who loves Oakridge?
+              Introductions are powerful.
+            </p>
+          </div>
+          <div class="miniCard">
+            <h3>4) Share</h3>
+            <p>
+              Share this page with Oakridge families and alumni. The fastest way to help is to widen the circle.
+            </p>
+          </div>
+        </div>
+
+        <div class="ctaRow" style="margin-top:14px;">
+          <a class="btn primary" href="#donate"><span class="dot" aria-hidden="true"></span>Donation info</a>
+          <a class="btn" href="#contact">Contact our parent group</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="story">
+      <div class="sectionHead">
+        <p class="kicker">Why this exists</p>
+        <h2>Oakridge is more than a school</h2>
+      </div>
+      <div class="sectionBody prose">
+        <p>
+          For decades, Oakridge has been a place where children grow in confidence, character, and community.
+          It’s the kind of school families come back to — sometimes even enrolling the next generation.
+        </p>
+        <p>
+          This effort is about bringing people together — parents, alumni, grandparents, friends of the school,
+          and the amazing teachers and staff — so Oakridge can move forward with strength.
+        </p>
+        <p class="muted">
+          We’ll keep this page updated as our community plans take shape (and we’ll add photos soon).
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="meet-us">
+      <div class="sectionHead">
+        <p class="kicker" id="meetKicker">This weekend</p>
+        <h2>Meet us at Open House</h2>
+      </div>
+      <div class="sectionBody prose">
+        <p>
+          We’ll be at Open House with a table — answering questions, sharing flyers, and helping people plug in.
+        </p>
+        <p>
+          <b>Sunday, March 1, 2026 · 1–3 pm</b><br/>
+          Oakridge Private School — 19111 Villa Park Rd, Orange, CA 92869
+        </p>
+        <p class="muted">
+          (We’re not “hosting” Open House — we’re showing up as a community group.)
+        </p>
+        <div class="ctaRow" style="margin-top:10px;">
+          <a class="btn" href="https://www.oakridgeschool.org/apps/pages/index.jsp?pREC_ID=2668475&type=d&uREC_ID=4429742" target="_blank" rel="noopener">
+            Official contact page
+          </a>
+          <a class="btn" href="tel:+17142881432">Call the school</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="moments">
+      <div class="sectionHead">
+        <p class="kicker">Life at Oakridge</p>
+        <h2>What we’re fighting for</h2>
+      </div>
+      <div class="sectionBody">
+        <p class="muted" style="margin:0 0 10px;">
+          A few recent highlights (external links):
+        </p>
+        <div class="moments" aria-label="Oakridge moments">
+          <div class="moment">
+            <b>The egg drop — pure Oakridge creativity and joy.</b>
+            <a href="https://www.instagram.com/reel/DVPMdUFkgTh/" target="_blank" rel="noopener">View on Instagram</a>
+          </div>
+          <div class="moment">
+            <b>The Principal's Award — recognizing students who live the Oakridge way.</b>
+            <a href="https://www.instagram.com/p/DVPMdUFkgTh/" target="_blank" rel="noopener">View on Instagram</a>
+          </div>
+          <div class="moment">
+            <b>Mrs. Park — Top 10 Teacher in Orange County (1st Grade).</b>
+            <a href="https://www.instagram.com/p/DUbpGbeyUN1/" target="_blank" rel="noopener">View on Instagram</a>
+          </div>
+          <div class="moment">
+            <b>Mr. Thatcher — Top 10 Teacher in Orange County (Middle School Science).</b>
+            <a href="https://www.instagram.com/p/DUujSizSVUz/" target="_blank" rel="noopener">View on Instagram</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="recognition">
+      <div class="sectionHead">
+        <p class="kicker">In development</p>
+        <h2>Donor recognition &amp; community programs</h2>
+      </div>
+      <div class="sectionBody prose">
+        <p>
+          We’re putting together donor recognition programs to celebrate every member of the community who contributes
+          — whether that’s giving, volunteering, connecting us to resources, or helping organize.
+        </p>
+        <p class="muted">
+          As this takes shape, we’ll publish the details here (simple, inclusive, and easy to participate in).
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="donate">
+      <div class="sectionHead">
+        <p class="kicker">Support</p>
+        <h2>How to donate</h2>
+      </div>
+      <div class="sectionBody prose">
+        <p>
+          For the most direct donation options, please contact the school office:
+          <a href="tel:+17142881432">(714) 288-1432</a>.
+        </p>
+        <p class="muted">
+          We’ll add “tap-to-donate” options here once we confirm the best links and preferred methods with the school.
+        </p>
+        <div class="ctaRow" style="margin-top:10px;">
+          <a class="btn primary" href="tel:+17142881432"><span class="dot" aria-hidden="true"></span>Call the school office</a>
+          <a class="btn" href="https://www.oakridgeschool.org/" target="_blank" rel="noopener">Visit official website</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="sectionHead">
+        <p class="kicker">Get involved</p>
+        <h2>Contact our parent group</h2>
+      </div>
+      <div class="sectionBody prose">
+        <p>
+          Want to volunteer, share an idea, or connect us to an alum or community supporter?
+        </p>
+        <p class="muted">
+          Replace the email below with your group’s email address (or a simple Google Form link).
+        </p>
+
+        <!-- TODO: replace with your real contact method -->
+        <div class="ctaRow">
+          <a class="btn primary" href="mailto:YOUR_GROUP_EMAIL_HERE?subject=Oakridge%20Reignited%20-%20I%20want%20to%20help">
+            <span class="dot" aria-hidden="true"></span>
+            Email us
+          </a>
+          <a class="btn" href="#how-to-help">Back to ways to help</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>
+        <b>Oakridge Private School</b><br/>
+        19111 Villa Park Rd, Orange, CA 92869 · <a href="tel:+17142881432">(714) 288-1432</a>
+      </div>
+      <div class="fineprint">
+        This page is organized by Oakridge parents &amp; community members. For official school information, visit the
+        <a href="https://www.oakridgeschool.org/" target="_blank" rel="noopener">school website</a>.
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Smooth in-page navigation (mobile-friendly)
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const id = a.getAttribute("href");
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.pushState(null, "", id);
+    });
+
+    // Optional dynamic label for "Meet us" section so it doesn't feel stale.
+    // Open House: Sunday, March 1, 2026 (local), 1pm
+    (function(){
+      const meetKicker = document.getElementById("meetKicker");
+      if (!meetKicker) return;
+
+      const eventDate = new Date(2026, 2, 1, 13, 0, 0); // Mar 1, 2026 1:00pm
+      const now = new Date();
+
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const d1 = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate());
+      const days = Math.round((d1 - today) / (24*60*60*1000));
+
+      let label = "Open House";
+      if (days === 0) label = "Today";
+      else if (days === 1) label = "Tomorrow";
+      else if (days > 1 && days <= 7) label = "This week";
+      else if (days < 0) label = "Recently";
+      else label = "Upcoming";
+
+      meetKicker.textContent = label;
+    })();
+  </script>
+</body>
+</html>
