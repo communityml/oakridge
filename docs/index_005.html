@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Oakridge Reignited</title>
+<style>
+  :root{
+    --navy:#0f2647;
+    --red:#b01f2e;
+    --bg:#f6f7fb;
+    --card:#ffffff;
+    --ink:#0b1220;
+    --muted:#344256;
+    --line: rgba(15,38,71,.14);
+    --shadow: 0 10px 22px rgba(10,18,32,.10);
+    --r: 14px;          /* less-round, modern */
+    --pad: 14px;
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.4;
+    font-size: 18px; /* bigger by default */
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a{ color:inherit; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  img{ display:block; max-width:100%; height:auto; }
+
+  .wrap{ max-width: 980px; margin:0 auto; padding: var(--pad); }
+
+  /* simple sticky header, no truncation games */
+  .top{
+    position: sticky; top:0; z-index:50;
+    background: rgba(246,247,251,.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topIn{
+    max-width:980px; margin:0 auto;
+    padding: 10px var(--pad);
+    display:flex; align-items:center; gap:10px;
+  }
+  .mark{ display:flex; align-items:center; gap:10px; min-width:0; }
+  .mark img{ width:28px; height:28px; object-fit:contain; }
+  .mark b{
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+  .topIn .sp{ flex:1; }
+
+  .btn{
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    padding: 10px 12px;
+    font-weight: 900;
+    min-height: 42px;
+    display:inline-flex; align-items:center; justify-content:center;
+    white-space: nowrap;
+    background:#fff;
+  }
+  .btn.primary{
+    background: var(--red);
+    border-color: rgba(176,31,46,.35);
+    color:#fff;
+  }
+  .btn.ghost{
+    background: transparent;
+    border-color: rgba(176,31,46,.25);
+    color: var(--red);
+  }
+
+  /* hero */
+  .hero{
+    margin-top: 12px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    overflow:hidden;
+  }
+  .heroText{ padding: 14px 14px 10px; }
+  h1{
+    margin:0;
+    color: var(--navy);
+    font-size: 34px; /* bigger */
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+  }
+  .sub{
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 18px;  /* not small */
+  }
+  .ctaRow{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  @media (min-width: 520px){
+    .ctaRow{ grid-template-columns: 1fr 1fr; }
+  }
+
+  /* image: no overlay, no clip-path, preserve subject */
+  .heroMedia{
+    border-top: 1px solid var(--line);
+    background: #0b1220;
+  }
+  .heroMedia a{ display:block; }
+  .heroMedia img{
+    width:100%;
+    height: 260px;          /* stable on phones */
+    object-fit: cover;
+    object-position: 50% 35%; /* bias upward to avoid chopping faces/text */
+    opacity: .98;
+  }
+  .mediaCap{
+    padding: 10px 14px 12px;
+    font-size: 15px;
+    color: rgba(255,255,255,.92);
+    background: linear-gradient(180deg, rgba(11,18,32,.00), rgba(11,18,32,.78));
+    margin-top: -52px;
+  }
+  .mediaCap span{
+    display:inline-block;
+    background: rgba(11,18,32,.72);
+    border: 1px solid rgba(255,255,255,.14);
+    padding: 8px 10px;
+    border-radius: 12px;
+    font-weight: 850;
+  }
+
+  /* ways-to-help cards */
+  .section{
+    margin-top: 12px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 14px;
+  }
+  .section h2{
+    margin:0;
+    font-size: 20px;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+  .grid{
+    margin-top: 10px;
+    display:grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  @media (min-width: 520px){
+    .grid{ grid-template-columns: 1fr 1fr; }
+  }
+  .card{
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 12px;
+    background: #fff;
+  }
+  .card b{ display:block; font-size: 17px; }
+  .card small{ display:block; margin-top: 4px; color: var(--muted); font-size: 15px; }
+
+  /* footer links zone (design only) */
+  .footer{
+    margin-top: 12px;
+    padding: 14px;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--muted);
+    font-size: 15px;
+  }
+  .links{
+    margin-top: 8px;
+    display:flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .linkchip{
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 8px 10px;
+    background: #fff;
+    color: var(--navy);
+    font-weight: 850;
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="topIn">
+    <div class="mark">
+      <img src="https://www.oakridgeschool.org/pics/school_logo.svg" alt="Oakridge logo" />
+      <b>Oakridge Reignited</b>
+    </div>
+    <div class="sp"></div>
+    <a class="btn ghost" href="#help">Ways to help</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="heroText">
+      <h1>Oakridge Reignited</h1>
+      <p class="sub">A parent &amp; community effort to strengthen Oakridge’s future.</p>
+
+      <div class="ctaRow">
+        <a class="btn primary" href="#help">Ways to help</a>
+        <a class="btn" href="#donate">How to donate</a>
+      </div>
+    </div>
+
+    <div class="heroMedia">
+      <a href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">
+        <img src="https://communityml.github.io/oakridge/img/openhouse.png" alt="Oakridge community moment" />
+      </a>
+      <div class="mediaCap">
+        <span>Tap to view Oakridge on Instagram</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="help">
+    <h2>Ways to help</h2>
+    <div class="grid">
+      <a class="card" href="#get-involved"><b>Get involved</b><small>Volunteer time or help coordinate.</small></a>
+      <a class="card" href="#tell-friends"><b>Tell your friends</b><small>Share with one alum or family.</small></a>
+      <a class="card" href="#expertise"><b>Lend your expertise</b><small>Skills, advice, connections, support.</small></a>
+      <a class="card" href="#donate"><b>Donate for an enduring legacy</b><small>Support long-term stability.</small></a>
+    </div>
+  </section>
+
+  <section class="footer" id="donate">
+    <div><b style="color:var(--navy);">Official links</b></div>
+    <div class="links">
+      <a class="linkchip" href="https://www.oakridgeschool.org/" target="_blank" rel="noopener">Oakridge website</a>
+      <a class="linkchip" href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">Instagram</a>
+      <a class="linkchip" href="tel:+17142881432">Call: (714) 288-1432</a>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>
