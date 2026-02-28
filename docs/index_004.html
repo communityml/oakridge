@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="color-scheme" content="light" />
+  <title>Oakridge Reignited — A Community Effort</title>
+  <meta name="description" content="Oakridge Reignited: Parents and community members coming together to support Oakridge’s future." />
+
+  <style>
+    :root{
+      /* Oakridge-ish palette (derived from the logo feel: navy + gold + red accents) */
+      --navy: #0f2647;
+      --navy2:#12315a;
+      --gold: #d7b25a;
+      --red:  #b01f2e;
+
+      --bg:   #fbfcff;
+      --card: #ffffff;
+      --ink:  #0f1b2d;
+      --muted:#516173;
+
+      --line: rgba(15, 38, 71, .12);
+      --shadow: 0 12px 34px rgba(15, 27, 45, .12);
+
+      --radius: 18px;
+      --max: 980px;
+
+      /* Respect user font scaling */
+      font-size: 16px;
+    }
+
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f4f7ff, var(--bg));
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      line-height: 1.55;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+    img{ max-width:100%; height:auto; display:block; }
+
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 14px 14px 54px; }
+
+    /* Sticky top actions (phone friendly) */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(251,252,255,.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .topbarInner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 10px 14px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+    .brandMini{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .brandMini img{
+      width: 26px; height: 26px;
+      object-fit: contain;
+    }
+    .brandMini .txt{
+      font-weight: 800;
+      color: var(--navy);
+      font-size: 0.95rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 52vw;
+    }
+    .spacer{ flex:1; }
+
+    .pillBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 12px;
+      min-height: 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(176,31,46,.22);
+      color: var(--red);
+      background: rgba(176,31,46,.06);
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    /* Wix-ish hero: big image, bold headline, stat band */
+    .hero{
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .heroTop{
+      padding: 16px 16px 0;
+    }
+
+    .headlineRow{
+      display:flex;
+      align-items:flex-start;
+      gap: 12px;
+    }
+    .logoBox{
+      width: 52px; height: 52px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(15,38,71,.05), rgba(15,38,71,0));
+      display:grid;
+      place-items:center;
+      flex: 0 0 auto;
+      overflow:hidden;
+    }
+    .logoBox img{ width: 40px; height: 40px; }
+
+    h1{
+      margin:0;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      font-size: clamp(1.6rem, 5.2vw, 2.5rem);
+      line-height: 1.1;
+    }
+    .sub{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 60ch;
+    }
+
+    .heroImgWrap{
+      margin-top: 14px;
+      /* "Wix curve" feel */
+      border-top: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(15,38,71,.03), rgba(255,255,255,0));
+      position: relative;
+    }
+    .heroImg{
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      /* curved bottom edge */
+      clip-path: ellipse(120% 92% at 50% 6%);
+    }
+    .heroImgLink{
+      display:block;
+      position: relative;
+    }
+    .heroImgLink::after{
+      content: "Tap photos to see Oakridge on Instagram";
+      position: absolute;
+      left: 12px; right: 12px; bottom: 10px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      background: rgba(15, 38, 71, .70);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.92rem;
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+
+    .statsBand{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      padding: 12px 12px 14px;
+      background: #fff;
+    }
+    @media (min-width: 720px){
+      .statsBand{ grid-template-columns: 1fr 1fr 1fr; }
+    }
+    .stat{
+      border-radius: 18px;
+      border: 1px solid rgba(15,38,71,.12);
+      background: linear-gradient(180deg, rgba(15,38,71,.06), rgba(15,38,71,.02));
+      padding: 12px 12px;
+      text-align:center;
+    }
+    .stat .big{
+      font-size: 1.35rem;
+      font-weight: 950;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+    }
+    .stat .small{
+      margin-top: 4px;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 0.92rem;
+    }
+
+    .content{
+      padding: 14px 16px 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 880px){
+      .content{ grid-template-columns: 1.1fr .9fr; gap: 18px; padding: 16px 18px 20px; }
+    }
+
+    .card{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 14px;
+    }
+    .kicker{
+      margin:0 0 6px;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .78rem;
+      color: var(--muted);
+      font-weight: 900;
+    }
+    h2{
+      margin:0 0 8px;
+      color: var(--navy);
+      font-size: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+    .prose p{ margin: 0 0 12px; }
+    .prose p:last-child{ margin-bottom:0; }
+
+    .ctaRow{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 14px;
+      min-height: 44px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font-weight: 900;
+      box-shadow: 0 10px 24px rgba(15,27,45,.10);
+    }
+    .btn:hover{ text-decoration:none; }
+    .btn.primary{
+      border-color: rgba(176,31,46,.25);
+      background: linear-gradient(90deg, rgba(176,31,46,.10), rgba(215,178,90,.12));
+      color: var(--navy);
+    }
+    .dot{
+      width: 10px; height: 10px;
+      border-radius: 999px;
+      background: var(--red);
+      box-shadow: 0 0 0 4px rgba(176,31,46,.12);
+      margin-right: 10px;
+      flex: 0 0 auto;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .chip{
+      border: 1px solid rgba(15,38,71,.14);
+      background: rgba(15,38,71,.04);
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-weight: 900;
+      color: var(--navy2);
+      font-size: 0.95rem;
+    }
+
+    .imgGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .imgTile{
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid rgba(15,38,71,.14);
+      background: #fff;
+      position: relative;
+      min-height: 120px;
+    }
+    .imgTile img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+    }
+    .imgTile .label{
+      position:absolute;
+      left: 10px; right: 10px; bottom: 10px;
+      padding: 8px 10px;
+      border-radius: 14px;
+      background: rgba(15,38,71,.70);
+      color: #fff;
+      font-weight: 900;
+      font-size: 0.92rem;
+      text-align:center;
+      backdrop-filter: blur(6px);
+    }
+
+    footer{
+      margin-top: 14px;
+      color: var(--muted);
+      text-align:center;
+      font-size: 0.92rem;
+      padding: 8px 8px 0;
+    }
+    .fine{
+      margin-top: 8px;
+      font-size: 0.85rem;
+      color: rgba(81,97,115,.95);
+    }
+
+    /* Better tap targets if user uses large fonts */
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar" role="region" aria-label="Quick actions">
+    <div class="topbarInner">
+      <div class="brandMini">
+        <img src="https://www.oakridgeschool.org/pics/school_logo.svg" alt="Oakridge Private School logo" />
+        <div class="txt">Oakridge Reignited</div>
+      </div>
+      <div class="spacer"></div>
+      <a class="pillBtn" href="#help">Ways to help</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" aria-label="Hero">
+      <div class="heroTop">
+        <div class="headlineRow">
+          <div class="logoBox" aria-hidden="true">
+            <img src="https://www.oakridgeschool.org/pics/school_logo.svg" alt="" />
+          </div>
+          <div>
+            <h1>Oakridge Reignited</h1>
+            <p class="sub">
+              A parent &amp; community effort to bring families, alumni, grandparents, staff, teachers,
+              and supporters together — to help Oakridge’s legacy endure.
+            </p>
+
+            <div class="ctaRow" id="help">
+              <a class="btn primary" href="#donate"><span class="dot" aria-hidden="true"></span>How to donate</a>
+              <a class="btn" href="#pillars">What Oakridge stands for</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Big “Wix-like” image moment -->
+      <div class="heroImgWrap">
+        <a class="heroImgLink"
+           href="https://www.instagram.com/oakridgeschool/?hl=en"
+           target="_blank" rel="noopener"
+           aria-label="View Oakridge on Instagram (opens new tab)">
+          <img class="heroImg"
+               src="https://communityml.github.io/oakridge/img/openhouse.png"
+               alt="Oakridge community moment" />
+        </a>
+
+        <!-- Stat band: keep as “labels” instead of claims until you want real numbers -->
+        <div class="statsBand" aria-label="Highlights">
+          <div class="stat">
+            <div class="big">Preschool–8th</div>
+            <div class="small">A full childhood arc</div>
+          </div>
+          <div class="stat">
+            <div class="big">Character First</div>
+            <div class="small">Six Pillars at the core</div>
+          </div>
+          <div class="stat">
+            <div class="big">Community-Led</div>
+            <div class="small">Simple ways to help</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <section class="card prose" aria-label="Mission">
+          <p class="kicker">Our mission</p>
+          <h2>Keep Oakridge strong for the next generation</h2>
+          <p>
+            Oakridge has meant so much to so many families. Right now, the school needs the community’s
+            energy, ideas, and support — and we’re organizing a simple on-ramp for people who want to help.
+          </p>
+          <p style="color:var(--muted); font-weight:750;">
+            Built for phones (QR-friendly), readable for everyone, and respectful of larger device font settings.
+          </p>
+        </section>
+
+        <aside class="card prose" aria-label="Quick actions">
+          <p class="kicker">Start here</p>
+          <h2>Pick one way to help</h2>
+          <div class="ctaRow">
+            <a class="btn primary" href="#donate"><span class="dot" aria-hidden="true"></span>Donate</a>
+            <a class="btn" href="#share">Share this page</a>
+            <a class="btn" href="#photos">See moments</a>
+          </div>
+          <p class="fine" style="margin:10px 0 0;">
+            Note: donor recognition is still in the brainstorming stage — we’re designing a program
+            to recognize all contributions that help build an enduring Oakridge legacy.
+          </p>
+        </aside>
+      </div>
+
+      <div class="content" style="padding-top:0;">
+        <section class="card prose" id="pillars" aria-label="Character pillars">
+          <p class="kicker">Be a person of character</p>
+          <h2>The Six Pillars of Character</h2>
+          <p class="fine" style="margin-top:0;">
+            (As displayed at Oakridge): Trustworthiness, Respect, Responsibility, Fairness, Caring, Citizenship.
+          </p>
+          <div class="chips" aria-label="Six pillars">
+            <span class="chip">Trustworthiness</span>
+            <span class="chip">Respect</span>
+            <span class="chip">Responsibility</span>
+            <span class="chip">Fairness</span>
+            <span class="chip">Caring</span>
+            <span class="chip">Citizenship</span>
+          </div>
+        </section>
+
+        <section class="card prose" id="photos" aria-label="Photos">
+          <p class="kicker">Life at Oakridge</p>
+          <h2>Recent moments</h2>
+
+          <div class="imgGrid">
+            <a class="imgTile" href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">
+              <img src="https://communityml.github.io/oakridge/img/eggdrop.png" alt="Egg drop moment" />
+              <div class="label">Egg Drop</div>
+            </a>
+
+            <a class="imgTile" href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">
+              <img src="https://communityml.github.io/oakridge/img/awards.png" alt="Awards moment" />
+              <div class="label">Awards</div>
+            </a>
+
+            <a class="imgTile" href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">
+              <img src="https://communityml.github.io/oakridge/img/teachers.png" alt="Teachers recognition moment" />
+              <div class="label">Teachers</div>
+            </a>
+
+            <a class="imgTile" href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">
+              <img src="https://communityml.github.io/oakridge/img/liondance.png" alt="Lion dance celebration" />
+              <div class="label">Lion Dance</div>
+            </a>
+          </div>
+        </section>
+      </div>
+
+      <div class="content" style="padding-top:0;">
+        <section class="card prose" id="donate" aria-label="Donate">
+          <p class="kicker">Support</p>
+          <h2>How to donate</h2>
+          <p>
+            For the most direct donation options, please contact the school office:
+            <a href="tel:+17142881432" style="font-weight:900; color:var(--navy);">(714) 288-1432</a>.
+          </p>
+          <div class="ctaRow">
+            <a class="btn primary" href="tel:+17142881432"><span class="dot" aria-hidden="true"></span>Call the school office</a>
+            <a class="btn" href="https://www.oakridgeschool.org/" target="_blank" rel="noopener">Official website</a>
+          </div>
+          <p class="fine">
+            We’ll add tap-to-donate links here once we confirm preferred methods with the school.
+          </p>
+        </section>
+
+        <section class="card prose" id="share" aria-label="Share">
+          <p class="kicker">Fastest help</p>
+          <h2>Share with one Oakridge family</h2>
+          <p>
+            The easiest action is to widen the circle — send this page to an alum, a grandparent, or a family who
+            loves Oakridge.
+          </p>
+          <div class="ctaRow">
+            <a class="btn primary" href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">
+              <span class="dot" aria-hidden="true"></span>Follow on Instagram
+            </a>
+            <a class="btn" href="#help">Back to top</a>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <footer>
+      <div style="font-weight:900; color:var(--navy);">Oakridge Private School</div>
+      <div>19111 Villa Park Rd, Orange, CA 92869 · <a href="tel:+17142881432">(714) 288-1432</a></div>
+      <div class="fine">
+        This page is organized by Oakridge parents &amp; community members. For official school information, visit
+        <a href="https://www.oakridgeschool.org/" target="_blank" rel="noopener">oakridgeschool.org</a>.
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Smooth in-page navigation (keep tiny + safe)
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const id = a.getAttribute("href");
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.pushState(null, "", id);
+    });
+  </script>
+</body>
+</html>
