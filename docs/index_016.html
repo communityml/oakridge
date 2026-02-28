@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="color-scheme" content="light" />
+  <title>Oakridge Reignited — Community Fundraising</title>
+  <meta name="description" content="A community effort to support Oakridge's future and build an enduring legacy." />
+
+  <style>
+    :root{
+      --bg: #fbf6ea;
+      --paper: #ffffff;
+      --ink: #0b1220;
+      --muted: #3a4a60;
+      --navy: #132b52;
+      --blue: #3e4a95;
+      --red: #b01f2e;
+      --line: rgba(19,43,82,.15);
+      --max: 1040px;
+      font-size: 19px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: hidden; }
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--navy); }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 16px 16px 64px;
+    }
+
+    /* ── Sticky nav ── */
+    .topbar{
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(251,246,234,.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .topbarInner{
+      max-width: var(--max); margin: 0 auto;
+      padding: 10px 16px;
+      display: flex; justify-content: flex-end; gap: 10px;
+    }
+    .navBtn{
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 44px; padding: 8px 16px;
+      border: 1.5px solid var(--line); border-radius: 6px;
+      background: transparent; color: var(--navy);
+      font-size: 1rem; font-weight: 800;
+      text-decoration: none; white-space: nowrap;
+    }
+    .navBtn.primary{ border-color: rgba(176,31,46,.4); color: var(--red); }
+
+    /* ── Hero header ── */
+    .heroHeader{ text-align: center; padding: 20px 4px 12px; }
+    .heroHeader h1{
+      color: var(--navy); font-weight: 950;
+      letter-spacing: -0.02em;
+      font-size: clamp(2.1rem, 7vw, 3.2rem);
+      line-height: 1.05; margin-bottom: 10px;
+    }
+    .heroHeader .tagline{
+      color: rgba(19,43,82,.85);
+      font-size: 1.05rem; line-height: 1.55;
+      max-width: 58ch; margin: 0 auto;
+    }
+
+    /* ── Hero image ── */
+    .heroMedia{
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 20px rgba(11,18,32,.10);
+      overflow: hidden;
+    }
+    .heroMedia a { display: block; }
+    .heroMedia img { width: 100%; }
+
+    /* ── Alert banner ──
+       Block-only layout. No flex row, no emoji, no nowrap.
+       Button is always display:block at full width — can never overflow. */
+    .alertBanner{
+      margin-top: 16px;
+      background: var(--navy); color: #fff;
+      border-radius: 8px; padding: 20px 20px 18px;
+    }
+    .alertLabel{
+      display: inline-block;
+      background: var(--red); color: #fff;
+      font-size: .76rem; font-weight: 900;
+      letter-spacing: .13em; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 4px;
+      margin-bottom: 12px;
+    }
+    .alertBanner strong{
+      display: block;
+      font-weight: 950; font-size: 1.18rem;
+      line-height: 1.22; letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+    .alertBanner p{
+      font-size: 1rem; line-height: 1.58;
+      opacity: .92; margin-bottom: 16px;
+    }
+    .alertCTA{
+      display: block; width: 100%; text-align: center;
+      padding: 14px 16px;
+      background: var(--red); color: #fff;
+      font-size: 1.05rem; font-weight: 900;
+      text-decoration: none; border-radius: 6px;
+    }
+    .alertCTA:hover { opacity: .9; }
+
+    /* ── Blue band ── */
+    .band{ margin-top: 20px; background: var(--blue); color: #fff; }
+    .bandInner{ max-width: var(--max); margin: 0 auto; padding: 20px 16px; }
+    .bandLabel{
+      text-align: center; font-weight: 900;
+      letter-spacing: .13em; text-transform: uppercase;
+      font-size: .76rem; opacity: .85; margin-bottom: 14px;
+    }
+    .bandGrid{ display: grid; grid-template-columns: 1fr; gap: 12px; }
+    @media (min-width: 820px){ .bandGrid { grid-template-columns: 1fr 1fr 1fr; } }
+    .bandItem{
+      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.07);
+      border-radius: 8px; padding: 16px;
+    }
+    .bandBig{ font-weight: 900; font-size: 1rem; margin-bottom: 8px; line-height: 1.3; }
+    .bandSmall{ font-size: .96rem; line-height: 1.58; opacity: .9; }
+
+    /* ── Sections / cards ── */
+    .section { margin-top: 20px; }
+    .grid2{ display: grid; grid-template-columns: 1fr; gap: 14px; align-items: start; }
+    @media (min-width: 920px){
+      .grid2 { grid-template-columns: 1.05fr .95fr; gap: 20px; }
+      .grid2.flip { grid-template-columns: .95fr 1.05fr; }
+    }
+    .card{
+      background: var(--paper); border: 1px solid var(--line);
+      box-shadow: 0 6px 16px rgba(11,18,32,.07);
+      border-radius: 8px; padding: 18px;
+    }
+    .imgCard { padding: 0; overflow: hidden; }
+    .imgCard a { display: block; }
+    .imgCard img { width: 100%; }
+
+    .kicker{
+      font-weight: 900; letter-spacing: .14em; text-transform: uppercase;
+      font-size: .75rem; color: rgba(19,43,82,.72); margin-bottom: 6px;
+    }
+    h2{
+      color: var(--navy); font-weight: 950; letter-spacing: -0.01em;
+      font-size: 1.38rem; line-height: 1.15; margin-bottom: 12px;
+    }
+    .prose p{
+      font-size: 1.02rem; color: var(--ink);
+      margin-bottom: 14px; line-height: 1.62;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose p.muted { color: var(--muted); }
+
+    .insetBox{
+      margin: 12px 0; padding: 14px 16px;
+      border-left: 3px solid var(--navy);
+      border-radius: 0 6px 6px 0;
+      background: rgba(19,43,82,.05);
+    }
+    .insetBox.blue{ border-left-color: var(--blue); background: rgba(62,74,149,.06); }
+    .insetBox p{ font-size: 1rem; color: var(--ink); line-height: 1.62; margin: 0; }
+
+    /* ── Help items ── */
+    .helpList{ display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 14px; }
+    @media (min-width: 820px){ .helpList { grid-template-columns: 1fr 1fr; } }
+    .helpItem{
+      border: 1px solid var(--line); background: #fff;
+      border-radius: 8px; padding: 14px 16px;
+    }
+    .helpItem strong{
+      display: block; font-weight: 950; color: var(--navy);
+      font-size: 1.05rem; margin-bottom: 6px;
+    }
+    .helpItem p{ font-size: .98rem; color: var(--muted); line-height: 1.58; margin: 0; }
+
+    /* ── Donate CTA ──
+       Block layout only. Button is display:block full-width. Never clips. */
+    .donateCTA{
+      margin-top: 16px; background: var(--red); color: #fff;
+      border-radius: 8px; padding: 18px 20px 16px;
+    }
+    .donateCTA strong{
+      display: block; font-weight: 950; font-size: 1.1rem;
+      margin-bottom: 6px; letter-spacing: -0.01em;
+    }
+    .donateCTA p{ font-size: .97rem; opacity: .92; margin-bottom: 14px; line-height: 1.5; }
+    .donateBtn{
+      display: block; width: 100%; text-align: center;
+      padding: 14px 16px;
+      background: #fff; color: var(--red);
+      font-size: 1.05rem; font-weight: 950;
+      text-decoration: none; border-radius: 6px;
+      word-break: break-all;
+      font-size: .95rem;
+    }
+    .donateBtn:hover { opacity: .9; }
+
+    /* ── Button row (open house) ── */
+    .btnRow{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .outlineBtn{
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 44px; padding: 8px 18px;
+      border: 1.5px solid var(--line); border-radius: 6px;
+      background: #fff; color: var(--navy);
+      font-size: 1rem; font-weight: 800;
+      text-decoration: none; white-space: nowrap;
+    }
+
+    /* ── Pillars ── */
+    .pillarList{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .pillar{
+      padding: 8px 14px;
+      border: 1.5px solid var(--line); border-radius: 6px;
+      font-weight: 800; font-size: .98rem; color: var(--navy); background: #fff;
+    }
+
+    /* ── Photo grid ── */
+    .momentsGrid{
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px; margin-top: 12px;
+    }
+    .momentTile{
+      border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+      display: flex; flex-direction: column;
+      text-decoration: none; background: #fff;
+      box-shadow: 0 4px 10px rgba(11,18,32,.06);
+    }
+    .thumb{ width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: 50% 35%; }
+    .thumb.teachers { object-position: 50% 18%; }
+    .momentCap{
+      padding: 8px 12px; font-weight: 800; font-size: .9rem;
+      color: var(--navy); border-top: 1px solid rgba(19,43,82,.09);
+    }
+
+    /* ── Footer ── */
+    footer{
+      margin-top: 24px; border-top: 1px solid var(--line);
+      padding-top: 18px; color: var(--muted);
+      font-size: .95rem; line-height: 1.62;
+    }
+    .footName{ color: var(--navy); font-weight: 950; font-size: 1rem; margin-bottom: 4px; }
+    .footLinks{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .footLink{
+      display: inline-flex; align-items: center;
+      min-height: 40px; padding: 6px 12px;
+      border: 1px solid var(--line); border-radius: 6px;
+      background: var(--paper); color: var(--navy);
+      font-weight: 800; font-size: .9rem;
+      text-decoration: none; white-space: nowrap;
+    }
+    .footDisclaimer{ margin-top: 12px; font-size: .88rem; color: var(--muted); }
+
+    /* ── Trees ── */
+    .treesBottom{ display: flex; justify-content: center; padding: 32px 16px 36px; }
+    .treesBottom img{ width: 33%; min-width: 140px; max-width: 380px; height: auto; }
+
+    @media (prefers-reduced-motion: reduce){ html { scroll-behavior: auto; } }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar" role="region" aria-label="Navigation">
+    <div class="topbarInner">
+      <a class="navBtn" href="#story">The story</a>
+      <a class="navBtn primary" href="#how-to-help">Ways to help</a>
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <header class="heroHeader">
+      <h1>Oakridge Reignited</h1>
+      <p class="tagline">
+        Parents, alumni, grandparents, staff, and friends —
+        coming together to carry Oakridge's next chapter forward.
+      </p>
+    </header>
+
+    <div class="heroMedia" aria-label="Oakridge awards assembly">
+      <a href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">
+        <img src="https://communityml.github.io/oakridge/img/awards.png"
+             alt="Oakridge students recognized for character and citizenship" />
+      </a>
+    </div>
+
+    <!-- ALERT BANNER: block-only, no flex row, no emoji icon, no overflow risk -->
+    <div class="alertBanner" role="note">
+      <span class="alertLabel">Community effort</span>
+      <strong>Oakridge faced a critical crossroads. The community stepped up. Now we carry it forward together.</strong>
+      <p>
+        Enrollment pressures and the absence of a strong endowment put Oakridge in a difficult position.
+        The community came together at exactly the right moment — and now there's a chance to build
+        something lasting: a foundation, a strategy, and a path to long-term stability.
+      </p>
+      <a class="alertCTA" href="/cdn-cgi/l/email-protection#50343f3e312435103f313b22393437352333383f3f3c7e3f2237">Raise your hand — email us</a>
+    </div>
+
+    <div class="band" aria-label="What we're building together">
+      <div class="bandInner">
+        <p class="bandLabel">What we're building together</p>
+        <div class="bandGrid">
+          <div class="bandItem">
+            <div class="bandBig">A school worth carrying forward</div>
+            <div class="bandSmall">
+              For 45 years, Oakridge has been a place where children are known, challenged,
+              and deeply supported — where character is taught, not just expected.
+            </div>
+          </div>
+          <div class="bandItem">
+            <div class="bandBig">A community that showed up</div>
+            <div class="bandSmall">
+              When Oakridge faced a critical crossroads, parents and alumni stepped in.
+              That energy now needs to grow into the lasting structure and support this school deserves.
+            </div>
+          </div>
+          <div class="bandItem">
+            <div class="bandBig">A next chapter built together</div>
+            <div class="bandSmall">
+              Endowment. Strategy. Governance. Growth. These are what make great schools
+              endure — not for one generation, but for all the ones that follow.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="story">
+      <div class="grid2">
+        <div class="card prose">
+          <p class="kicker">Why this exists</p>
+          <h2>Oakridge is more than a school</h2>
+          <p>
+            Founded 45 years ago on a simple belief — that every child has strengths worth nurturing —
+            Oakridge was built on character, faith, and the conviction that a school should be open
+            to everyone who shares those values. That founding spirit is as relevant today as it was
+            with the first nine students.
+          </p>
+          <p>
+            It's the kind of school families come back to. Alumni send their own children here.
+            Teachers stay for decades. The Six Pillars aren't a poster on the wall —
+            they leave a mark that lasts a lifetime.
+          </p>
+          <div class="insetBox">
+            <p>
+              Like many independent schools, Oakridge reached a critical crossroads —
+              enrollment pressure and the absence of a strong endowment made long-term stability
+              uncertain. Tuition alone has limits. The community came together at exactly the right moment.
+            </p>
+          </div>
+          <p>
+            Now the work continues. Families and alumni are working alongside school leadership
+            to build the structure this school deserves — a strategy, an endowment, and a governance
+            foundation that can carry Oakridge into its next chapter.
+          </p>
+          <div class="insetBox blue">
+            <p>
+              This isn't about a single donation or a single event. It's about everyone who has ever
+              called Oakridge home deciding together that it's worth protecting — and worth building on.
+            </p>
+          </div>
+        </div>
+        <div class="card imgCard" aria-label="Principal award moment">
+          <a href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">
+            <img src="https://communityml.github.io/oakridge/img/prin.png"
+                 alt="Principal's Award Winner at Oakridge" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how-to-help">
+      <div class="card prose">
+        <p class="kicker">Start here</p>
+        <h2>Ways the community can help</h2>
+        <p class="muted">
+          Whether you have an hour, a skill, a network, or a gift — there's a place for you in this.
+        </p>
+        <div class="helpList">
+          <div class="helpItem">
+            <strong>Raise your hand</strong>
+            <p>Experience in governance, finance, strategy, fundraising, marketing, or law?
+               This effort needs people like you. Just say so.</p>
+          </div>
+          <div class="helpItem">
+            <strong>Lend your network</strong>
+            <p>Introductions to donors, advisors, or organizations that could help Oakridge
+               grow are worth as much as anything.</p>
+          </div>
+          <div class="helpItem">
+            <strong>Give toward the endowment</strong>
+            <p>Every contribution — from a family gift to a corporate partnership — builds the
+               endowment that means Oakridge is never one hard year away from crisis.</p>
+          </div>
+          <div class="helpItem">
+            <strong>Tell one person</strong>
+            <p>Share this page with one alum, one family, or one friend who cares about Oakridge.
+               Word of mouth is how this grows.</p>
+          </div>
+        </div>
+        <!-- Donate CTA: block layout, full-width button, zero overflow risk -->
+        <div class="donateCTA">
+          <strong>Ready to get involved? Let's connect.</strong>
+          <p>To donate, share expertise, or ask a question — this is where it starts.</p>
+          <a class="donateBtn" href="/cdn-cgi/l/email-protection#177378797663725778767c657e73707264747f78787b39786570"><span class="__cf_email__" data-cfemail="caaea5a4abbeaf8aa5aba1b8a3aeadafb9a9a2a5a5a6e4a5b8ad">[email&#160;protected]</span></a>
+        </div>
+        <p class="muted" style="margin-top:14px; font-size:.97rem;">
+          You can also call the school:
+          <a href="tel:+17142881432" style="font-weight:800; color:var(--navy);">(714) 288-1432</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="meet-us">
+      <div class="grid2 flip">
+        <div class="card imgCard" aria-label="Open House image">
+          <a href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">
+            <img src="https://communityml.github.io/oakridge/img/openhouse.png"
+                 alt="Oakridge Open House" />
+          </a>
+        </div>
+        <div class="card prose">
+          <p class="kicker">This Sunday · March 1</p>
+          <h2>Come together at Open House</h2>
+          <p>
+            Oakridge is hosting their Open House this Sunday. The community will have a table and sign —
+            a welcoming place for parents, alumni, and friends to find each other and talk about what comes next.
+          </p>
+          <p>
+            Come say hello. Share what you're thinking. No agenda, no pressure —
+            just neighbors who care about the same thing.
+          </p>
+          <p>
+            <strong>Sunday, March 1, 2026 · 1–3 pm</strong><br/>
+            19111 Villa Park Rd, Orange, CA 92869
+          </p>
+          <p class="muted">Open House is the school's event. The community table is where neighbors connect.</p>
+          <div class="btnRow">
+            <a class="outlineBtn"
+               href="https://www.oakridgeschool.org/apps/pages/index.jsp?pREC_ID=2668475&type=d&uREC_ID=4429742"
+               target="_blank" rel="noopener">School contact page</a>
+            <a class="outlineBtn" href="tel:+17142881432">Call the school</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pillars">
+      <div class="card prose">
+        <p class="kicker">What Oakridge teaches</p>
+        <h2>The Six Pillars of Character</h2>
+        <p class="muted">
+          These aren't just words on a wall. They're the foundation the Burrys built this school on
+          45 years ago — and the reason Oakridge has built one of Orange County's most genuinely
+          diverse and welcoming communities. They're worth protecting.
+        </p>
+        <div class="pillarList">
+          <span class="pillar">Trustworthiness</span>
+          <span class="pillar">Respect</span>
+          <span class="pillar">Responsibility</span>
+          <span class="pillar">Fairness</span>
+          <span class="pillar">Caring</span>
+          <span class="pillar">Citizenship</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="moments">
+      <div class="card prose">
+        <p class="kicker">Life at Oakridge</p>
+        <h2>Recent moments</h2>
+        <p class="muted">Tap any photo to visit Oakridge on Instagram.</p>
+        <div class="momentsGrid">
+          <a class="momentTile" href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">
+            <img class="thumb" src="https://communityml.github.io/oakridge/img/eggdrop.png" alt="Egg drop project" />
+            <div class="momentCap">Egg Drop</div>
+          </a>
+          <a class="momentTile" href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">
+            <img class="thumb" src="https://communityml.github.io/oakridge/img/awards.png" alt="Awards assembly" />
+            <div class="momentCap">Awards</div>
+          </a>
+          <a class="momentTile" href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">
+            <img class="thumb teachers" src="https://communityml.github.io/oakridge/img/teachers.png" alt="Teacher recognition" />
+            <div class="momentCap">Teachers</div>
+          </a>
+          <a class="momentTile" href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">
+            <img class="thumb" src="https://communityml.github.io/oakridge/img/liondance.png" alt="Lion dance celebration" />
+            <div class="momentCap">Lion Dance</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer id="links">
+      <div class="footName">Oakridge Private School</div>
+      <div>19111 Villa Park Rd, Orange, CA 92869 &nbsp;&middot;&nbsp;
+        <a href="tel:+17142881432" style="font-weight:700;">(714) 288-1432</a>
+      </div>
+      <div class="footLinks">
+        <a class="footLink" href="https://www.oakridgeschool.org/" target="_blank" rel="noopener">Official Website</a>
+        <a class="footLink" href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">Instagram</a>
+        <a class="footLink"
+           href="https://www.oakridgeschool.org/apps/pages/index.jsp?pREC_ID=2668475&type=d&uREC_ID=4429742"
+           target="_blank" rel="noopener">Contact page</a>
+        <a class="footLink" href="/cdn-cgi/l/email-protection#7a1e15141b0e1f3a151b1108131e1d1f0919121515165415081d"><span class="__cf_email__" data-cfemail="660209080712032609070d140f02010315050e09090a48091401">[email&#160;protected]</span></a>
+      </div>
+      <p class="footDisclaimer">
+        This page is organized by Oakridge parents &amp; community members.
+        For official school information, visit the
+        <a href="https://www.oakridgeschool.org/" target="_blank" rel="noopener">school website</a>.
+      </p>
+    </footer>
+
+  </main>
+
+  <div class="treesBottom" aria-label="Oakridge legacy trees">
+    <a href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">
+      <img src="https://communityml.github.io/oakridge/img/trees.png"
+           alt="Oak trees representing an enduring legacy" />
+    </a>
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/clo
