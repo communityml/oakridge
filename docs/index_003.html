@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oakridge Reignited</title>
+
+<style>
+:root{
+  --navy:#0f2647;
+  --red:#b01f2e;
+  --ink:#142033;
+  --muted:#5c6b7c;
+  --bg:#f8faff;
+  --line:rgba(15,38,71,.12);
+  --shadow:0 10px 30px rgba(15,27,45,.08);
+  --radius:18px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+
+.wrap{
+  max-width:1100px;
+  margin:auto;
+  padding:20px 16px 60px;
+}
+
+h1,h2,h3{margin:0}
+p{margin:0 0 14px}
+a{text-decoration:none;color:var(--navy)}
+a:hover{text-decoration:underline}
+
+.section{
+  margin-top:22px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.sectionHead{
+  padding:18px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(90deg, rgba(176,31,46,.05), rgba(15,38,71,.03));
+}
+
+.sectionHead h2{
+  font-size:22px;
+  color:var(--navy);
+}
+
+.sectionBody{
+  padding:18px;
+}
+
+.hero{
+  background:#fff;
+  border-radius:26px;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.heroTop{
+  padding:22px 22px 10px;
+}
+
+.brandRow{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+.logoBox{
+  width:58px;height:58px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  display:grid;
+  place-items:center;
+  background:#fff;
+}
+
+.logoBox img{
+  width:44px;height:44px;
+}
+
+h1{
+  font-size:38px;
+  color:var(--navy);
+  letter-spacing:-.02em;
+}
+
+.sub{
+  margin-top:8px;
+  color:var(--muted);
+  font-size:16px;
+  max-width:600px;
+}
+
+.ctaRow{
+  margin-top:16px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.btn{
+  padding:12px 16px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:#fff;
+  font-weight:700;
+  box-shadow:0 6px 18px rgba(15,27,45,.08);
+}
+
+.btn.primary{
+  border-color:rgba(176,31,46,.25);
+  background:linear-gradient(90deg, rgba(176,31,46,.1), rgba(15,38,71,.05));
+}
+
+.photoGrid{
+  display:grid;
+  gap:16px;
+  grid-template-columns:1fr;
+}
+
+@media (min-width:720px){
+  .photoGrid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+.photoCard{
+  display:block;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  background:#fff;
+  transition:.2s ease;
+}
+
+.photoCard:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 36px rgba(15,27,45,.15);
+}
+
+.photoCard img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+  display:block;
+}
+
+.photoCaption{
+  padding:14px;
+}
+
+.photoCaption b{
+  display:block;
+  font-size:16px;
+  margin-bottom:4px;
+}
+
+.photoCaption span{
+  font-size:14px;
+  color:var(--muted);
+}
+
+footer{
+  margin-top:30px;
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="heroTop">
+    <div class="brandRow">
+      <div class="logoBox">
+        <img src="https://www.oakridgeschool.org/pics/school_logo.svg" alt="Oakridge Logo">
+      </div>
+      <div>
+        <h1>Oakridge Reignited</h1>
+        <p class="sub">
+          A group of Oakridge parents and community members working together 
+          to help Oakridge’s legacy endure — by bringing families, alumni, 
+          grandparents, teachers, staff, and supporters together.
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn primary" href="#help">Ways to Help</a>
+          <a class="btn" href="#story">Read the Story</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- STORY -->
+<section class="section" id="story">
+  <div class="sectionHead">
+    <h2>Oakridge Is More Than a School</h2>
+  </div>
+  <div class="sectionBody">
+    <p>
+      For decades, Oakridge has been a place where children grow in confidence,
+      character, and community. It’s the kind of school families return to —
+      sometimes enrolling the next generation.
+    </p>
+    <p>
+      This effort is about bringing the community together to support Oakridge
+      moving forward with strength and stability.
+    </p>
+  </div>
+</section>
+
+
+<!-- LIFE AT OAKRIDGE -->
+<section class="section">
+  <div class="sectionHead">
+    <h2>What We’re Fighting For</h2>
+  </div>
+  <div class="sectionBody">
+
+    <div class="photoGrid">
+
+      <a href="https://www.instagram.com/oakridgeschool/?hl=en"
+         target="_blank"
+         class="photoCard">
+        <img src="https://communityml.github.io/oakridge/img/eggdrop.png"
+             alt="Egg drop project">
+        <div class="photoCaption">
+          <b>The Egg Drop</b>
+          <span>Creativity, teamwork, and joy.</span>
+        </div>
+      </a>
+
+      <a href="https://www.instagram.com/oakridgeschool/?hl=en"
+         target="_blank"
+         class="photoCard">
+        <img src="https://communityml.github.io/oakridge/img/principal_award.png"
+             alt="Principal's Award">
+        <div class="photoCaption">
+          <b>Principal’s Award</b>
+          <span>Recognizing leadership and character.</span>
+        </div>
+      </a>
+
+      <a href="https://www.instagram.com/oakridgeschool/?hl=en"
+         target="_blank"
+         class="photoCard">
+        <img src="https://communityml.github.io/oakridge/img/mrs_park.png"
+             alt="Mrs Park">
+        <div class="photoCaption">
+          <b>Mrs. Park</b>
+          <span>Top 10 Teacher in Orange County.</span>
+        </div>
+      </a>
+
+      <a href="https://www.instagram.com/oakridgeschool/?hl=en"
+         target="_blank"
+         class="photoCard">
+        <img src="https://communityml.github.io/oakridge/img/mr_thatcher.png"
+             alt="Mr Thatcher">
+        <div class="photoCaption">
+          <b>Mr. Thatcher</b>
+          <span>Top 10 Teacher in Orange County.</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- HOW TO HELP -->
+<section class="section" id="help">
+  <div class="sectionHead">
+    <h2>Ways You Can Help</h2>
+  </div>
+  <div class="sectionBody">
+    <p><strong>1) Donate</strong> — Support the school directly through the official channels.</p>
+    <p><strong>2) Volunteer</strong> — Help with outreach, organization, or community coordination.</p>
+    <p><strong>3) Connect Us</strong> — Introduce alumni, grandparents, or local supporters.</p>
+    <p><strong>4) Share</strong> — Send this page to other Oakridge families.</p>
+
+    <div class="ctaRow">
+      <a class="btn primary" href="tel:+17142881432">Call the School Office</a>
+      <a class="btn" href="https://www.oakridgeschool.org/" target="_blank">
+        Official Website
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  Oakridge Private School<br>
+  19111 Villa Park Rd, Orange, CA 92869 · (714) 288-1432<br>
+  Organized by Oakridge parents and community members.
+</footer>
+
+</div>
+</body>
+</html>
