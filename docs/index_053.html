@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="color-scheme" content="light" />
+  <title>Oakridge Reignited: Community Effort</title>
+  <meta name="description" content="A community effort to support Oakridge's future and build an enduring legacy." />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg: #fbf6ea;
+      --paper: #ffffff;
+      --ink: #0b1220;
+      --muted: #3a4a60;
+      --navy: #132b52;
+      --blue: #3e4a95;
+      --red: #b01f2e;
+      --subhead-color: #e60513;
+      --line: rgba(19,43,82,.15);
+      --max: 1040px;
+      font-size: 17px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: hidden; scroll-behavior: smooth; }
+    body{
+      font-family: 'Manrope', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--navy); }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 8px 16px 64px;
+    }
+
+    /* ── Sticky nav ── */
+    .topbar{
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(251,246,234,.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .topbarInner{
+      max-width: var(--max); margin: 0 auto;
+      padding: 5px 12px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .navLogo{
+      display: inline-flex; align-items: center;
+      text-decoration: none; flex-shrink: 0;
+    }
+    .navBtn{
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 34px; padding: 6px 14px;
+      border-radius: 6px;
+      font-family: 'Manrope', sans-serif;
+      font-size: .82rem; font-weight: 800;
+      text-decoration: none; white-space: nowrap;
+      background: var(--red); color: #fff; border: none;
+    }
+
+    /* ── Hero header ── */
+    .heroHeader{ text-align: left; padding: 10px 4px 6px; }
+    .heroHeader h1{
+      color: var(--navy); font-weight: 800;
+      letter-spacing: -0.02em;
+      font-size: clamp(2.1rem, 7vw, 3.2rem);
+      line-height: 1.05; margin-bottom: 10px;
+    }
+    .heroHeader .subhead{
+      color: var(--subhead-color);
+      font-size: .95rem;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600; font-style: normal;
+      line-height: 1.4; margin-bottom: 10px;
+    }
+    .heroHeader .tagline{
+      color: rgba(19,43,82,.82);
+      font-size: .95rem; line-height: 1.55;
+      max-width: 58ch; margin: 0 0 10px;
+    }
+
+    /* Desktop font size upgrades */
+    @media (min-width: 768px){
+      .heroHeader .subhead { font-size: 1.4rem; font-weight: 600; }
+      .prose p, .prose p.muted { font-size: 1.1rem; }
+      .heroHeader .tagline { font-size: 1.1rem; }
+    }
+
+    .heroOpt1 h1{
+      font-size: clamp(1.8rem, 8vw, 3.4rem);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    /* ── Hero slideshow ── */
+    .heroSlideshow{
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 20px rgba(11,18,32,.10);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4/3;
+      background: var(--navy);
+    }
+    .heroSlideshow img{
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: 50% 20%;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    .heroSlideshow img.active { opacity: 1; }
+
+    /* ── Sections / cards ── */
+    .section { margin-top: 20px; }
+    .grid2{ display: grid; grid-template-columns: 1fr; gap: 14px; align-items: start; }
+    @media (min-width: 920px){
+      .grid2 { grid-template-columns: 1.05fr .95fr; gap: 20px; }
+      .grid2.flip { grid-template-columns: .95fr 1.05fr; }
+    }
+    .card{
+      background: var(--paper); border: 1px solid var(--line);
+      box-shadow: 0 6px 16px rgba(11,18,32,.07);
+      border-radius: 8px; padding: 18px;
+    }
+    .imgCard { padding: 0; overflow: hidden; }
+    .imgCard a { display: block; }
+    .imgCard img { width: 100%; }
+
+    .kicker{
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--subhead-color);
+      margin-bottom: 6px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    h2{
+      font-family: 'Manrope', sans-serif;
+      color: var(--navy); font-weight: 700; letter-spacing: -0.01em;
+      font-size: 1.38rem; line-height: 1.15; margin-bottom: 12px;
+    }
+    .prose p{
+      font-size: 1.02rem; color: var(--ink);
+      margin-bottom: 14px; line-height: 1.62;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose p.muted { color: var(--muted); }
+
+    .rhythmLines{ margin: 14px 0 16px; border-left: 3px solid var(--blue); padding-left: 14px; }
+    .rhythmLines p{
+      font-size: 1.05rem; font-weight: 800; color: var(--navy);
+      margin-bottom: 4px !important; line-height: 1.5;
+    }
+
+    .insetBox{
+      margin: 12px 0; padding: 14px 16px;
+      border-left: 3px solid var(--navy);
+      border-radius: 0 6px 6px 0;
+      background: rgba(19,43,82,.05);
+    }
+    .insetBox.blue{ border-left-color: var(--blue); background: rgba(62,74,149,.06); }
+    .insetBox p{ font-size: 1rem; color: var(--ink); line-height: 1.62; margin: 0; }
+
+    /* ── Fresh Start / roadmap intro ── */
+    .freshStart{
+      margin-top: 20px;
+      background: var(--navy); color: #fff;
+      border-radius: 8px; padding: 22px 22px 20px;
+    }
+    .freshStart h2{ color: #fff; margin-bottom: 10px; }
+    .freshStart p{
+      font-size: 1.02rem; line-height: 1.62;
+      color: rgba(255,255,255,.88);
+      margin-bottom: 10px;
+    }
+    .freshStart p:last-child { margin-bottom: 0; }
+    @media (min-width: 768px){
+      .freshStart p { font-size: 1.32rem; }
+    }
+
+    /* ── Roadmap ── */
+    .roadmapSection{ margin-top: 20px; }
+    .roadmapCard{
+      background: var(--paper); border: 1px solid var(--line);
+      box-shadow: 0 6px 16px rgba(11,18,32,.07);
+      border-radius: 8px; padding: 20px 18px;
+    }
+    .roadmapSteps{
+      display: flex; flex-direction: column; gap: 0;
+      margin-top: 12px;
+    }
+    .roadmapStep{
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--line);
+      border-radius: 6px;
+    }
+    .roadmapStep:last-child { border-bottom: none; }
+    .roadmapStep.step1-row { background: rgba(19,43,82,.00); }
+    .roadmapStep.step2-row { background: rgba(62,74,149,.04); }
+    .roadmapStep.step3-row { background: rgba(91,107,191,.07); }
+    .roadmapStep.step4-row { background: rgba(122,136,204,.10); }
+    .roadmapStep.step5-row { background: rgba(154,165,217,.13); }
+    .stepTitle{
+      display: flex; align-items: center; gap: 9px; margin-bottom: 5px;
+    }
+    .stepNum{
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: .72rem;
+      box-shadow: 0 2px 6px rgba(19,43,82,.22);
+    }
+    .stepNum.step1 { background: var(--navy); }
+    .stepNum.step2 { background: var(--blue); }
+    .stepNum.step3 { background: #5b6bbf; }
+    .stepNum.step4 { background: #7a88cc; }
+    .stepNum.step5 { background: #9aa5d9; }
+    .stepTitle strong{
+      color: var(--navy); font-weight: 700; font-size: .97rem; line-height: 1.2;
+    }
+    .stepBody p{
+      font-size: .88rem; color: var(--muted); line-height: 1.55; margin: 0;
+    }
+    .stepBody strong{
+      display: block; color: var(--navy); font-weight: 800;
+      font-size: 1.05rem; margin-bottom: 4px;
+    }
+    .stepBody p{
+      font-size: .98rem; color: var(--muted); line-height: 1.58; margin: 0;
+    }
+
+    /* ── Accomplished section ── */
+    .accomplishedSection{
+      margin-top: 20px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      box-shadow: 0 6px 16px rgba(11,18,32,.07);
+      border-radius: 8px;
+      padding: 20px 18px;
+    }
+    .accomplishedSection h2{ margin-bottom: 14px; }
+    .accomplishedSection li{
+      padding: 12px 16px;
+      background: rgba(19,43,82,.04);
+      border-left: 3px solid var(--navy);
+      border-radius: 0 6px 6px 0;
+      font-size: 1rem; color: var(--ink); line-height: 1.58;
+    }
+    .placeholderSection{
+      margin-top: 20px;
+      border: 1.5px dashed rgba(19,43,82,.2);
+      border-radius: 8px; padding: 20px;
+      background: rgba(19,43,82,.02);
+    }
+    .placeholderSection h2{ color: var(--navy); margin-bottom: 8px; }
+    .placeholderSection p{ font-size: 1rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── What's Next items ── */
+    .nextList{ display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 14px; }
+    @media (min-width: 820px){ .nextList { grid-template-columns: 1fr 1fr; } }
+    .nextItem{
+      border: 1px solid var(--line); background: #fff;
+      border-radius: 8px; padding: 14px 16px;
+    }
+    .nextItem strong{
+      display: block; font-weight: 800; color: var(--navy);
+      font-size: 1.05rem; margin-bottom: 6px;
+    }
+    .nextItem p{ font-size: .98rem; color: var(--muted); line-height: 1.58; margin: 0; }
+
+    /* ── Contact & Donations ── */
+    .contactSection{ margin-top: 20px; }
+    .contactCard{
+      background: var(--paper); border: 1px solid var(--line);
+      box-shadow: 0 6px 16px rgba(11,18,32,.07);
+      border-radius: 8px; padding: 20px 18px; overflow: hidden;
+    }
+    .contactGrid{
+      display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 16px;
+      overflow: hidden;
+    }
+    @media (min-width: 820px){ .contactGrid { grid-template-columns: 1fr 1fr; } }
+    .contactItem{
+      border: 1px solid var(--line); border-radius: 8px; padding: 16px;
+      background: #fff; min-width: 0; overflow: hidden;
+    }
+    .contactItem strong{
+      display: block; font-weight: 800; color: var(--navy);
+      font-size: 1rem; margin-bottom: 6px;
+    }
+    .contactItem p{ font-size: .95rem; color: var(--muted); line-height: 1.55; margin-bottom: 10px; }
+    .contactItem a.contactLink{
+      display: inline-block;
+      font-weight: 800; color: var(--navy); font-size: .97rem;
+      text-decoration: underline;
+    }
+    .signupBox{
+      margin-top: 14px;
+      border: 1.5px dashed rgba(19,43,82,.22);
+      border-radius: 8px; padding: 18px;
+      background: rgba(19,43,82,.03);
+      text-align: center;
+      min-width: 0; overflow: hidden;
+    }
+    .signupBox p{
+      font-size: 1rem; color: var(--muted);
+      margin-bottom: 6px; line-height: 1.5;
+    }
+    .stripeItem{
+      border: 1px solid rgba(176,31,46,.2); border-radius: 8px; padding: 16px;
+      background: rgba(176,31,46,.03);
+      overflow: hidden; min-width: 0; max-width: 100%;
+    }
+    .stripeItem stripe-buy-button{ display: block; width: 100%; max-width: 100%; overflow: hidden; text-align: center; }
+    .stripeItem stripe-buy-button iframe{ max-width: 100% !important; width: 100% !important; }
+    .stripeItem > stripe-buy-button { --stripe-buy-button-width: 100%; }
+    .stripeItem strong{
+      display: block; font-weight: 800; color: var(--navy);
+      font-size: 1rem; margin-bottom: 6px;
+    }
+    .stripeItem p{ font-size: .95rem; color: var(--muted); line-height: 1.55; margin-bottom: 12px; }
+    .donateBtn{
+      display: block; width: 100%; margin-top: 4px;
+      padding: 14px;
+      background: #1a73e8; color: #fff;
+      text-align: center; font-weight: 700; font-size: 1rem;
+      border-radius: 6px; text-decoration: none;
+    }
+    .donateBtn:hover { background: #1558b0; }
+
+    /* ── Credibility band ── */
+    .credBand{ margin-top: 20px; background: var(--navy); color: #fff; }
+    .credBandInner{ max-width: var(--max); margin: 0 auto; padding: 20px 16px; }
+    .credBandLabel{
+      text-align: center; font-weight: 700;
+      font-family: 'Manrope', sans-serif;
+      font-size: 1.05rem; color: #fff; opacity: .9; margin-bottom: 14px;
+    }
+    .credGrid{ display: grid; grid-template-columns: 1fr; gap: 12px; }
+    @media (min-width: 820px){ .credGrid { grid-template-columns: 1fr 1fr; } }
+    .credItem{
+      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.07);
+      border-radius: 8px; padding: 16px 18px;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .credStar{
+      font-size: 1.8rem; line-height: 1; flex-shrink: 0;
+    }
+    .credBig{ font-weight: 800; font-size: 1rem; margin-bottom: 4px; line-height: 1.3; }
+    .credSmall{ font-size: .88rem; line-height: 1.52; opacity: .85; }
+
+    /* ── Pillars ── */
+    .pillarsImg{
+      margin-top: 20px;
+      border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: 0 6px 16px rgba(11,18,32,.07);
+    }
+    .pillarsImg img{ width: 100%; display: block; }
+
+    /* ── Donate CTA ── */
+    .donateCTA{
+      margin-top: 16px; background: var(--red); color: #fff;
+      border-radius: 8px; padding: 18px 20px 16px;
+    }
+    .donateCTA strong{
+      display: block; font-weight: 800; font-size: 1.1rem;
+      margin-bottom: 6px; letter-spacing: -0.01em;
+    }
+    .donateCTA p{ font-size: .97rem; opacity: .92; margin-bottom: 14px; line-height: 1.5; }
+    .donateBtn{
+      display: block; width: 100%; text-align: center;
+      padding: 14px 16px;
+      background: #fff; color: var(--red);
+      font-size: 1rem; font-weight: 800;
+      text-decoration: none; border-radius: 6px;
+    }
+    .donateBtn:hover { opacity: .9; }
+
+    /* ── Button row ── */
+    .btnRow{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .outlineBtn{
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 44px; padding: 8px 18px;
+      border: 1.5px solid var(--line); border-radius: 6px;
+      background: #fff; color: var(--navy);
+      font-size: 1rem; font-weight: 800;
+      text-decoration: none; white-space: nowrap;
+    }
+
+    /* ── Footer ── */
+    footer{
+      margin-top: 24px; border-top: 1px solid var(--line);
+      padding-top: 18px; color: var(--muted);
+      font-size: .95rem; line-height: 1.62;
+    }
+    .footName{ color: var(--navy); font-weight: 800; font-size: 1rem; margin-bottom: 4px; }
+    .footLinks{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .footLink{
+      display: inline-flex; align-items: center;
+      min-height: 40px; padding: 6px 12px;
+      border: 1px solid var(--line); border-radius: 6px;
+      background: var(--paper); color: var(--navy);
+      font-weight: 800; font-size: .9rem;
+      text-decoration: none; white-space: nowrap;
+    }
+    .footDisclaimer{ margin-top: 12px; font-size: .88rem; color: var(--muted); }
+
+    @media (prefers-reduced-motion: reduce){ html { scroll-behavior: auto; } }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar" role="region" aria-label="Navigation">
+    <div class="topbarInner">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <a href="https://www.oakridgeschool.org/" target="_blank" rel="noopener" class="navLogo" aria-label="Oakridge Private School official website">
+          <img src="https://www.oakridgeschool.org/pics/school_logo.svg" style="height:34px;width:34px;display:block;" alt="Oakridge Private School" />
+        </a>
+        <img src="https://communityml.github.io/oakridge/img/beart.png" style="height:34px;width:auto;display:block;" alt="Oakridge Reignited" />
+      </div>
+      <div style="display:flex; gap:8px;">
+        <a class="navBtn" style="background:var(--navy);" href="#contact-support">Contact</a>
+        <a class="navBtn" href="#contact-donate">Donate</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <!-- ── HERO ── -->
+    <header class="heroHeader heroOpt1">
+      <h1>Oakridge Reignited</h1>
+      <p class="subhead">Rooted in Heritage. Rising with Purpose.</p>
+      <p class="tagline">A community coming together to preserve what makes Oakridge extraordinary, and build the foundation it deserves for the next 45 years.</p>
+    </header>
+
+    <!-- ── HERO SLIDESHOW ── -->
+    <div class="heroSlideshow" aria-label="Oakridge school life" id="heroSlideshow">
+      <img src="https://communityml.github.io/oakridge/img/img01.png" alt="Oakridge school life" class="active" />
+      <img src="https://communityml.github.io/oakridge/img/img02.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img03.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img04.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img05.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img06.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img07.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img08.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img09.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img10.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img11.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img12.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img13.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img14.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img15.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img16.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img17.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img18.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img19.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img20.png" alt="Oakridge school life" />
+      <img src="https://communityml.github.io/oakridge/img/img21.png" alt="Oakridge school life" />
+    </div>
+
+    <!-- ── OUR MISSION ── -->
+    <section class="section" id="mission">
+
+      <!-- Row 1: opening mission text + principal image -->
+      <div class="grid2">
+        <div class="card prose">
+          <p class="kicker">Our Mission</p>
+          <h2>The Heart of Oakridge</h2>
+          <p style="font-weight:800; color:var(--navy); font-size:1.04rem; margin-bottom:16px;">
+            Grounded in Values. United in Community. Committed to Excellence.
+          </p>
+          <p>
+            Oakridge begins a renewed chapter rooted in what has always defined us: faith, academic
+            rigor, character, and love. Our community comes together with conviction to preserve
+            something extraordinary, a place where children are known, challenged, and deeply supported.
+          </p>
+          <p>
+            We hold high expectations in the classroom while fostering respect, compassion, and a
+            genuine sense of home among our students and families. A rigorous education and a
+            genuinely warm community don't just coexist at Oakridge. They strengthen each other.
+          </p>
+          <div class="rhythmLines">
+            <p>Character guides us.</p>
+            <p>Community holds us together.</p>
+            <p>Every child is known here.</p>
+          </div>
+        </div>
+        <div class="card imgCard" aria-label="Principal award moment">
+          <a href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">
+            <img src="https://communityml.github.io/oakridge/img/prin.png"
+                 alt="Principal's Award Winner at Oakridge" />
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── A FRESH START ── -->
+    <div class="freshStart">
+      <h2>A Fresh Start</h2>
+      <p>It has been just a few days since Oakridge was saved from an acquisition that threatened to erase Oakridge's unique character and offering. Here's the roadmap ahead.</p>
+    </div>
+
+    <!-- ── ROADMAP ── -->
+    <section class="roadmapSection" id="roadmap">
+      <div class="roadmapCard">
+        <h2>The Roadmap</h2>
+        <div class="roadmapSteps">
+                    <div class="roadmapStep step1-row">
+            <div class="stepTitle">
+              <div class="stepNum step1">1</div>
+              <strong>Community Mobilization</strong>
+            </div>
+            <div class="stepBody"><p>Bring parents, alumni, and supporters together to give Oakridge the extra support it needs.</p></div>
+          </div>
+                    <div class="roadmapStep step2-row">
+            <div class="stepTitle">
+              <div class="stepNum step2">2</div>
+              <strong>Governance, Board Improvements, and Strategic Plan</strong>
+            </div>
+            <div class="stepBody"><p>Build the organizational foundation Oakridge needs: a strengthened board, clear governance, and a multi-year strategic plan developed in partnership with the community.</p></div>
+          </div>
+                    <div class="roadmapStep step3-row">
+            <div class="stepTitle">
+              <div class="stepNum step3">3</div>
+              <strong>Fundraising</strong>
+            </div>
+            <div class="stepBody"><p>Grow fundraising efforts by engaging families, alumni, and community partners to build the financial support this school deserves.</p></div>
+          </div>
+                    <div class="roadmapStep step4-row">
+            <div class="stepTitle">
+              <div class="stepNum step4">4</div>
+              <strong>Building an Endowment</strong>
+            </div>
+            <div class="stepBody"><p>Create lasting financial stability so Oakridge is never again one difficult year away from crisis. An endowment built for the next generation.</p></div>
+          </div>
+                    <div class="roadmapStep step5-row">
+            <div class="stepTitle">
+              <div class="stepNum step5">5</div>
+              <strong>Growing Oakridge</strong>
+            </div>
+            <div class="stepBody"><p>Expand enrollment, strengthen programs, and position Oakridge to thrive for decades to come.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WHAT HAS BEEN ACCOMPLISHED ── -->
+    <div class="accomplishedSection">
+      <h2>What Has Been Accomplished</h2>
+      <ul style="list-style:none; padding:0; margin-top:10px; display:flex; flex-direction:column; gap:10px;">
+        <li>Bringing the community together to save Oakridge</li>
+        <li>Establishing a direct connection between the board and the community</li>
+        <li>Getting transparency into the solvable challenges that Oakridge has been trying to face on its own so that we can get the right help in place</li>
+      </ul>
+    </div>
+    <section class="section" id="whats-next">
+      <div class="card prose">
+        <p class="kicker">What's Next</p>
+        <h2>The Plan Will Be Built Together</h2>
+        <p>
+          We need people willing to bring their expertise, their networks, and their time to the table.
+          The areas where help is most needed:
+        </p>
+        <div class="nextList">
+          <div class="nextItem">
+            <strong>Governance &amp; board structure</strong>
+            <p>Helping Oakridge build the organizational foundation to carry the school forward
+               sustainably, with structures that serve the school's mission for the long term.</p>
+          </div>
+          <div class="nextItem">
+            <strong>Strategy &amp; planning</strong>
+            <p>Enrollment growth, program development, long-term positioning. Turning the
+               community's energy into a real, durable multi-year plan.</p>
+          </div>
+          <div class="nextItem">
+            <strong>Fundraising &amp; development</strong>
+            <p>Building the endowment and a systematic fundraising function so the school
+               is never one hard year away from crisis again.</p>
+          </div>
+          <div class="nextItem">
+            <strong>Finance, law &amp; marketing</strong>
+            <p>Professional expertise that small independent schools rarely have access to.
+               If you have it, Oakridge needs you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT ── -->
+    <section class="section" id="contact">
+      <div class="contactCard" id="contact-support">
+        <h2>Contact Us</h2>
+        <div class="contactGrid">
+          <div class="contactItem">
+            <strong>General inquiries &amp; getting involved</strong>
+            <p>Questions about how to participate, lend your expertise, or connect with the initiative. Reach out here.</p>
+            <a class="contactLink" href="/cdn-cgi/l/email-protection#6a191f1a1a05181e2a050b0118030e0d0f1909020505064405180d"><span class="__cf_email__" data-cfemail="a2d1d7d2d2cdd0d6e2cdc3c9d0cbc6c5c7d1c1cacdcdce8ccdd0c5">[email&#160;protected]</span></a>
+          </div>
+          <div class="signupBox" style="margin-top:0;">
+            <p>Stay connected. Sign up to receive updates as this effort grows.</p>
+            <p style="font-size:.85rem; color:var(--muted); opacity:.7; margin:0;">Email &amp; SMS signup coming soon.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DONATIONS ── -->
+    <section class="section" id="contact-donate">
+      <div class="contactCard">
+        <h2>Donate</h2>
+        <div class="contactGrid">
+          <div class="contactItem">
+            <strong>Donate to Oakridge</strong>
+            <p>To discuss a donation, planned giving, or a partnership, contact our donations team directly.</p>
+            <a class="contactLink" href="/cdn-cgi/l/email-protection#baded5d4dbced3d5d4c9fad5dbd1c8d3dedddfc9d9d2d5d5d694d5c8dd"><span class="__cf_email__" data-cfemail="01656e6f6075686e6f72416e606a73686566647262696e6e6d2f6e7366">[email&#160;protected]</span></a>
+          </div>
+          <div class="stripeItem">
+            <strong>Donate Online</strong>
+            <p>Make a secure online donation instantly using Stripe.</p>
+            <a class="donateBtn" href="https://donate.stripe.com/7sY28qgPFcGn5mE6Mz2go00" target="_blank" rel="noopener">Donate</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CREDIBILITY BAND ── -->
+    <div class="credBand" aria-label="Oakridge recognition">
+      <div class="credBandInner">
+        <p class="credBandLabel">Oakridge Recognized</p>
+        <div class="credGrid">
+          <div class="credItem">
+            <div class="credStar">🏆</div>
+            <div>
+              <div class="credBig">#1 Private School in Orange County</div>
+              <div class="credSmall">Ranked the top single-campus private school in Orange County, a distinction earned through decades of academic excellence and community. <a href="https://parentingoc.com/readers-choice-awards/education-2/" target="_blank" rel="noopener" style="color:rgba(255,255,255,.75); text-decoration:underline;">Parenting OC Readers' Choice</a></div>
+            </div>
+          </div>
+          <div class="credItem">
+            <div class="credStar">⭐</div>
+            <div>
+              <div class="credBig">Top 10 Teachers in Orange County</div>
+              <div class="credSmall">Oakridge faculty consistently recognized among the best educators in the county. Teachers who stay for decades because they love this school. <a href="https://parentingoc.com/education/top-teacher-employee-awards/" target="_blank" rel="noopener" style="color:rgba(255,255,255,.75); text-decoration:underline;">Parenting OC Top Teacher Awards</a></div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:14px; border-radius:8px; overflow:hidden;">
+          <a href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">
+            <img src="https://communityml.github.io/oakridge/img/teachers.png"
+                 alt="Teacher recognition at Oakridge"
+                 style="width:100%; object-fit:cover; object-position:50% 18%; display:block;" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STORY / FOUNDING TEXT ── -->
+    <section class="section">
+      <div class="card prose">
+        <p>
+          Oakridge school culture is
+          transparent, principled, and forward-thinking, preparing students not only for academic
+          achievement, but for lives of integrity, leadership, and service.
+        </p>
+        <p>
+          Founded 45 years ago on the belief that every child has strengths worth nurturing,
+          Oakridge was built on character, faith, and the conviction that a school should be open
+          to everyone who shares those values. It's the kind of school families come back to.
+          Alumni send their own children here.
+        </p>
+        <p>
+          The Six Pillars aren't a poster on a wall. They leave a mark that lasts a lifetime.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── SIX PILLARS IMAGE ── -->
+    <section class="section" style="padding-top:0; padding-bottom:0;">
+      <div style="background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 2px 10px rgba(11,18,32,.07);">
+        <img src="https://communityml.github.io/oakridge/img/pillars.png"
+             alt="The Six Pillars of Character: Trustworthiness, Respect, Responsibility, Fairness, Caring, Citizenship"
+             style="width:100%; display:block;" />
+      </div>
+    </section>
+
+
+
+
+    <!-- ── FOOTER ── -->
+    <footer id="links">
+      <div class="footName">Oakridge Private School</div>
+      <div>19111 Villa Park Rd, Orange, CA 92869 &nbsp;&middot;&nbsp; (714) 288-1432</div>
+      <div class="footLinks">
+        <a class="footLink" href="https://www.oakridgeschool.org/" target="_blank" rel="noopener">
+          <img src="https://www.oakridgeschool.org/pics/school_logo.svg" style="width:20px;height:20px;margin-right:6px;flex-shrink:0;" alt="" />
+          Official Website
+        </a>
+        <a class="footLink" href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">
+          <svg style="width:18px;height:18px;margin-right:6px;flex-shrink:0;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="#132b52" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="4" stroke="#132b52" stroke-width="2" fill="none"/><circle cx="17.5" cy="6.5" r="1.2" fill="#132b52"/></svg>
+          Instagram
+        </a>
+        <a class="footLink" href="https://www.facebook.com/oakridgeprivateschool/" target="_blank" rel="noopener">
+          <svg style="width:18px;height:18px;margin-right:6px;flex-shrink:0;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#132b52" d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99H7.9V12h2.54V9.77c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.12 22 16.99 22 12z"/></svg>
+          Facebook
+        </a>
+        <a class="footLink"
+           href="https://www.oakridgeschool.org/apps/pages/index.jsp?pREC_ID=2668475&type=d&uREC_ID=4429742"
+           target="_blank" rel="noopener">Contact Page</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
