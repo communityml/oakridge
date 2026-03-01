@@ -291,15 +291,16 @@
     .contactCard{
       background: var(--paper); border: 1px solid var(--line);
       box-shadow: 0 6px 16px rgba(11,18,32,.07);
-      border-radius: 8px; padding: 20px 18px;
+      border-radius: 8px; padding: 20px 18px; overflow: hidden;
     }
     .contactGrid{
       display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 16px;
+      overflow: hidden;
     }
     @media (min-width: 820px){ .contactGrid { grid-template-columns: 1fr 1fr; } }
     .contactItem{
       border: 1px solid var(--line); border-radius: 8px; padding: 16px;
-      background: #fff;
+      background: #fff; min-width: 0; overflow: hidden;
     }
     .contactItem strong{
       display: block; font-weight: 800; color: var(--navy);
@@ -317,6 +318,7 @@
       border-radius: 8px; padding: 18px;
       background: rgba(19,43,82,.03);
       text-align: center;
+      min-width: 0; overflow: hidden;
     }
     .signupBox p{
       font-size: 1rem; color: var(--muted);
@@ -325,16 +327,24 @@
     .stripeItem{
       border: 1px solid rgba(176,31,46,.2); border-radius: 8px; padding: 16px;
       background: rgba(176,31,46,.03);
+      overflow: hidden; min-width: 0; max-width: 100%;
     }
+    .stripeItem stripe-buy-button{ display: block; width: 100%; max-width: 100%; overflow: hidden; text-align: center; }
+    .stripeItem stripe-buy-button iframe{ max-width: 100% !important; width: 100% !important; }
+    .stripeItem > stripe-buy-button { --stripe-buy-button-width: 100%; }
     .stripeItem strong{
       display: block; font-weight: 800; color: var(--navy);
       font-size: 1rem; margin-bottom: 6px;
     }
     .stripeItem p{ font-size: .95rem; color: var(--muted); line-height: 1.55; margin-bottom: 12px; }
-    .stripeLink{
-      display: inline-block; margin-top: 10px;
-      font-size: .88rem; color: var(--muted); text-decoration: underline;
+    .donateBtn{
+      display: block; width: 100%; margin-top: 4px;
+      padding: 14px;
+      background: var(--navy); color: #fff;
+      text-align: center; font-weight: 700; font-size: 1rem;
+      border-radius: 6px; text-decoration: none;
     }
+    .donateBtn:hover { background: var(--blue); }
 
     /* ── Credibility band ── */
     .credBand{ margin-top: 20px; background: var(--navy); color: #fff; }
@@ -377,14 +387,14 @@
       margin-bottom: 6px; letter-spacing: -0.01em;
     }
     .donateCTA p{ font-size: .97rem; opacity: .92; margin-bottom: 14px; line-height: 1.5; }
-    .donateBtn{
+    .donateCTA .donateBtn{
       display: block; width: 100%; text-align: center;
       padding: 14px 16px;
       background: #fff; color: var(--red);
       font-size: 1rem; font-weight: 800;
       text-decoration: none; border-radius: 6px;
     }
-    .donateBtn:hover { opacity: .9; }
+    .donateCTA .donateBtn:hover { opacity: .9; }
 
     /* ── Button row ── */
     .btnRow{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
@@ -416,6 +426,20 @@
     .footDisclaimer{ margin-top: 12px; font-size: .88rem; color: var(--muted); }
 
     @media (prefers-reduced-motion: reduce){ html { scroll-behavior: auto; } }
+
+    /* ── QR Share box ── */
+    .shareBox{
+      display: flex; align-items: center; gap: 14px;
+      margin-top: 16px; padding: 12px 14px;
+      border: 1px solid var(--line); border-radius: 8px;
+      background: #fff;
+    }
+    .qrWrap{ flex-shrink: 0; width: 72px; height: 72px; }
+    .qrWrap canvas, .qrWrap img { width: 72px !important; height: 72px !important; display: block; }
+    .shareBox .shareText strong{
+      display: block; font-weight: 800; color: var(--navy); font-size: .9rem; margin-bottom: 2px;
+    }
+    .shareBox .shareText p{ font-size: .82rem; color: var(--muted); line-height: 1.4; margin: 0; }
   </style>
 </head>
 
@@ -565,7 +589,7 @@
         <li>Establishing a direct connection between the board and the community</li>
         <li>Getting transparency into the solvable challenges that Oakridge has been trying to face on its own so that we can get the right help in place</li>
       </ul>
-    </div> ── -->
+    </div>
     <section class="section" id="whats-next">
       <div class="card prose">
         <p class="kicker">What's Next</p>
@@ -613,6 +637,7 @@
             <p>Stay connected. Sign up to receive updates as this effort grows.</p>
             <p style="font-size:.85rem; color:var(--muted); opacity:.7; margin:0;">Email &amp; SMS signup coming soon.</p>
           </div>
+          
         </div>
       </div>
     </section>
@@ -630,15 +655,9 @@
           <div class="stripeItem">
             <strong>Donate Online</strong>
             <p>Make a secure online donation instantly using Stripe.</p>
-            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-            <stripe-buy-button
-              buy-button-id="buy_btn_1T6608C3KafPPwuCTn59P1GS"
-              publishable-key="pk_live_2M0W5DzLLvAfGyh3zxvZqYuk00CcmQW1OB"
-            ></stripe-buy-button>
-            <a class="stripeLink" href="https://donate.stripe.com/7sY28qgPFcGn5mE6Mz2go00" target="_blank" rel="noopener">
-              Link to Stripe to make a donation
-            </a>
+            <a class="donateBtn" href="https://donate.stripe.com/7sY28qgPFcGn5mE6Mz2go00" target="_blank" rel="noopener">Donate</a>
           </div>
+          
         </div>
       </div>
     </section>
@@ -702,21 +721,7 @@
       </div>
     </section>
 
-    <!-- ── STORY CONTINUED ── -->
-    <section class="section" style="padding-top:0;">
-      <div class="card prose">
-        <p>
-          Like many independent schools, Oakridge reached a critical crossroads. Enrollment
-          pressure and the absence of a strong endowment made long-term stability uncertain.
-          Tuition alone has limits. The community came together at exactly the right moment.
-        </p>
-        <p>
-          Now the work continues. Families and alumni are working alongside school leadership to
-          build the structure this school deserves: a strategy, an endowment, and a governance
-          foundation that can carry Oakridge into its next chapter.
-        </p>
-      </div>
-    </section>
+
 
 
     <!-- ── FOOTER ── -->
@@ -740,30 +745,54 @@
            href="https://www.oakridgeschool.org/apps/pages/index.jsp?pREC_ID=2668475&type=d&uREC_ID=4429742"
            target="_blank" rel="noopener">Contact Page</a>
         <a class="footLink" href="mailto:support@oakridgeschool.org">support@oakridgeschool.org</a>
+       
         <a class="footLink" href="mailto:donations@oakridgeschool.org">donations@oakridgeschool.org</a>
       </div>
-      <p class="footDisclaimer">
-        This is a community-led effort in support of Oakridge Private School. This site is not an official publication of the school.
-      </p>
+      <p class="footDisclaimer">This is a community-led effort in support of Oakridge Private School. This site is not an official publication of the school.</p>
+      <div class="shareBox" style="margin-top:14px;">
+        <div class="qrWrap" id="qrcode"></div>
+        <div class="shareText">
+          <strong>Share This Page</strong>
+          <p>Point a phone camera at the QR code — no contact info needed.</p>
+          <p style="font-size:.78rem; font-weight:700; color:var(--navy); opacity:.55; margin-top:4px;">oakridgereignited.org</p>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-top:18px; padding-top:14px; border-top:1px solid var(--line);">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <a href="https://www.oakridgeschool.org/" target="_blank" rel="noopener" class="navLogo" aria-label="Oakridge Private School official website">
+            <img src="https://www.oakridgeschool.org/pics/school_logo.svg" style="height:34px;width:34px;display:block;" alt="Oakridge Private School" />
+          </a>
+          <img src="https://communityml.github.io/oakridge/img/beart.png" style="height:34px;width:auto;display:block;" alt="Oakridge Reignited" />
+        </div>
+        <div style="display:flex; gap:8px;">
+          <a class="navBtn" style="background:var(--navy);" href="#contact-support">Contact</a>
+          <a class="navBtn" href="#contact-donate">Donate</a>
+        </div>
+      </div>
     </footer>
-
   </main>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script>
-    // Slideshow
-    (function(){
-      const container = document.getElementById('heroSlideshow');
-      if(!container) return;
-      const imgs = Array.from(container.querySelectorAll('img'));
-      if(imgs.length < 2) return;
-      let current = 0;
-      setInterval(function(){
-        imgs[current].classList.remove('active');
-        current = (current + 1) % imgs.length;
-        imgs[current].classList.add('active');
-      }, 4000);
+    new QRCode(document.getElementById('qrcode'), {
+      text: 'https://oakridgereignited.org',
+      width: 72, height: 72,
+      colorDark: '#132b52', colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  </script>
+  <script>
+    (function () {
+      var slides = document.querySelectorAll('.heroSlideshow img');
+      if (!slides.length) return;
+      var current = 0;
+      slides[0].classList.add('active');
+      setInterval(function () {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+      }, 3500);
     })();
   </script>
-
 </body>
 </html>
