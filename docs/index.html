@@ -470,6 +470,11 @@
 
     @media (prefers-reduced-motion: reduce){ html { scroll-behavior: auto; } }
 
+    /* ── Hide nav logos on mobile (Events/Contact/Donate buttons need the room) ── */
+    @media (max-width: 599px) {
+      .navLogos { display: none !important; }
+    }
+
     /* ── Collapsible form toggle ── */
     .formToggle{ margin-top: 14px; }
     .formToggleSummary{
@@ -515,7 +520,7 @@
 
   <div class="topbar" role="region" aria-label="Navigation">
     <div class="topbarInner">
-      <div style="display:flex; align-items:center; gap:8px;">
+      <div class="navLogos" style="display:flex; align-items:center; gap:8px;">
         <a href="https://www.oakridgeschool.org/" target="_blank" rel="noopener" class="navLogo" aria-label="Oakridge Private School official website">
           <img src="https://www.oakridgeschool.org/pics/school_logo.svg" style="height:34px;width:34px;display:block;" alt="Oakridge Private School" />
         </a>
@@ -698,6 +703,20 @@
         <p class="kicker">Upcoming Events</p>
         <div class="eventList" id="eventList">
 
+          <details class="eventCard" data-event-date="2026-02-16">
+            <summary>
+              <div class="eventMeta">
+                <div class="eventName">4-day Weekend</div>
+                <div class="eventDate">Feb 13–16 &nbsp;·&nbsp; All Weekend</div>
+              </div>
+              <svg class="eventChevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </summary>
+            <div class="eventBody">
+              <span class="eventLoc">Location: Oakridge Private School</span>
+              <p>A four-day holiday weekend for students and families. School closed Friday Feb 14 through Monday Feb 16.</p>
+            </div>
+          </details>
+
           <details class="eventCard" data-event-date="2026-03-10">
             <summary>
               <div class="eventMeta">
@@ -861,7 +880,13 @@
        
         <a class="footLink" href="mailto:donations@oakridgeschool.org">donations@oakridgeschool.org</a>
       </div>
-      <p class="footDisclaimer">This is a community-led effort in support of Oakridge Private School. This site is not an official publication of the school.</p>
+      <div style="display:flex; align-items:center; gap:10px; margin-top:12px; flex-wrap:wrap;">
+        <a href="https://www.oakridgeschool.org/" target="_blank" rel="noopener" aria-label="Oakridge Private School official website">
+          <img src="https://www.oakridgeschool.org/pics/school_logo.svg" style="height:28px;width:28px;display:block;opacity:.6;" alt="Oakridge Private School" />
+        </a>
+        <img src="https://communityml.github.io/oakridge/img/beart.png" style="height:28px;width:auto;display:block;opacity:.6;" alt="Oakridge Reignited" />
+        <p class="footDisclaimer" style="margin:0;">This is a community-led effort in support of Oakridge Private School. This site is not an official publication of the school.</p>
+      </div>
       <div class="shareBox" style="margin-top:14px;">
         <div class="qrWrap" id="qrcode"></div>
         <div class="shareText">
@@ -870,14 +895,9 @@
           <p style="font-size:.78rem; font-weight:700; color:var(--navy); opacity:.55; margin-top:4px;">oakridgereignited.org</p>
         </div>
       </div>
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-top:18px; padding-top:14px; border-top:1px solid var(--line);">
-        <div style="display:flex; align-items:center; gap:8px;">
-          <a href="https://www.oakridgeschool.org/" target="_blank" rel="noopener" class="navLogo" aria-label="Oakridge Private School official website">
-            <img src="https://www.oakridgeschool.org/pics/school_logo.svg" style="height:34px;width:34px;display:block;" alt="Oakridge Private School" />
-          </a>
-          <img src="https://communityml.github.io/oakridge/img/beart.png" style="height:34px;width:auto;display:block;" alt="Oakridge Reignited" />
-        </div>
+      <div style="display:flex; justify-content:flex-end; align-items:center; flex-wrap:wrap; gap:8px; margin-top:18px; padding-top:14px; border-top:1px solid var(--line);">
         <div style="display:flex; gap:8px;">
+          <a class="navBtn" style="background:var(--navy); color:#fff;" href="#events">Events</a>
           <a class="navBtn" style="background:var(--navy);" href="#contact-support">Contact</a>
           <a class="navBtn" href="#contact-donate">Donate</a>
         </div>
