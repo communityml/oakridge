@@ -21,7 +21,8 @@ fi
 
 : "${BUCKET:?Set BUCKET in .env or environment}"
 : "${DIST_ID:?Set DIST_ID in .env or environment}"
-REGION="${REGION:-us-east-1}"
+REGION="${REGION:-us-west-2}"
+S3_PREFIX="${S3_PREFIX:-}"   # e.g. "origin/" — trailing slash required if set
 DOCS="docs"
 
 DRY_RUN=false
@@ -32,7 +33,7 @@ fi
 
 # ── Helpers ────────────────────────────────────────────────────────────────────
 upload() {
-  local src="$1" dest="$2" ctype="$3"
+  local src="$1" dest="${S3_PREFIX}$2" ctype="$3"
   echo "  upload: $src → s3://$BUCKET/$dest"
   if ! $DRY_RUN; then
     aws s3 cp "$src" "s3://$BUCKET/$dest" \
@@ -42,7 +43,7 @@ upload() {
 }
 
 sync_dir() {
-  local src="$1" dest="$2"
+  local src="$1" dest="${S3_PREFIX}$2"
   echo "  sync:   $src → s3://$BUCKET/$dest"
   if ! $DRY_RUN; then
     aws s3 sync "$src" "s3://$BUCKET/$dest" \
@@ -62,19 +63,20 @@ done
 
 # ── Upload ─────────────────────────────────────────────────────────────────────
 echo ""
-echo "Uploading to s3://$BUCKET/ ..."
+echo "Uploading to s3://$BUCKET/${S3_PREFIX} ..."
 upload "$DOCS/index.html"  "index.html"  "text/html; charset=utf-8"
 upload "$DOCS/donate.html" "donate.html" "text/html; charset=utf-8"
 sync_dir "$DOCS/img" "img"
 
 # ── CloudFront invalidation ────────────────────────────────────────────────────
+# Invalidation paths are the public URL paths CloudFront serves,
+# regardless of any S3 prefix configured in the origin.
 echo ""
 echo "Invalidating CloudFront distribution $DIST_ID ..."
 if ! $DRY_RUN; then
   aws cloudfront create-invalidation \
     --distribution-id "$DIST_ID" \
     --paths "/index.html" "/donate.html" "/img/*" \
-    --region "$REGION" \
     --query 'Invalidation.{Id:Id,Status:Status}' \
     --output table
 fi
