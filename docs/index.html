@@ -15,7 +15,7 @@
 
   <style>
     :root{
-      --bg: #fbf6ea;
+      --bg: #ffffff;
       --paper: #ffffff;
       --ink: #0b1220;
       --muted: #3a4a60;
@@ -49,7 +49,7 @@
     /* ── Sticky nav ── */
     .topbar{
       position: sticky; top: 0; z-index: 50;
-      background: rgba(251,246,234,.96);
+      background: rgba(255,255,255,.96);
       border-bottom: 1px solid var(--line);
       backdrop-filter: blur(10px);
     }
@@ -529,7 +529,7 @@
       <div style="display:flex; gap:8px;">
         <a class="navBtn" style="background:var(--navy); color:#fff;" href="#events">Events</a>
         <a class="navBtn" style="background:var(--navy);" href="#contact-support">Contact</a>
-        <a class="navBtn" href="#contact-donate">Donate</a>
+        <a class="navBtn" href="donate.html">Donate</a>
       </div>
     </div>
   </div>
@@ -775,7 +775,7 @@
     <!-- ── CONTACT ── -->
     <section class="section" id="contact">
       <div class="contactCard" id="contact-support">
-        <h2>Contact Us</h2>
+        <h2>Get Involved</h2>
         <div class="contactGrid" style="grid-template-columns:1fr;">
           <div class="contactItem">
             <strong>General inquiries &amp; getting involved</strong>
@@ -785,12 +785,12 @@
         </div>
         <details class="formToggle">
           <summary class="formToggleSummary">
-            <span>Sign up for updates</span>
+            <span>Volunteer — sign up to help</span>
             <svg class="formChevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
           </summary>
           <div class="formWrap">
-            <p>Stay connected. Sign up to receive updates as this effort grows.</p>
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdbUK-zk90VBRAW6HGmuxhdl-fPYG_q7VJWb1OMf7QtaOlheA/viewform?embedded=true" height="913" frameborder="0" marginheight="0" marginwidth="0" title="Stay connected signup form">Loading…</iframe>
+            <p>Ready to give your time? Tell us about yourself and how you'd like to help.</p>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeH6MtRP2wfTZjSs7Z3XDXvbPFQJ5Yt0hyea-m_O6AsjbPhTA/viewform?embedded=true" height="2200" frameborder="0" marginheight="0" marginwidth="0" title="Volunteer signup form">Loading…</iframe>
           </div>
         </details>
       </div>
@@ -808,11 +808,14 @@
           </div>
           <div class="stripeItem">
             <strong>Donate Online</strong>
-            <p>Make a secure online donation instantly using Stripe.</p>
-            <a class="donateBtn" href="https://donate.stripe.com/7sY28qgPFcGn5mE6Mz2go00" target="_blank" rel="noopener">Donate</a>
+            <p>Your gift supports Oakridge Private School — a 501(c)(3) nonprofit. Click below to donate any amount. You'll be taken to a secure Stripe page where you can give right away.</p>
+            <a class="donateBtn" href="https://donate.stripe.com/7sY28qgPFcGn5mE6Mz2go00" target="_blank" rel="noopener">Give Now — Secure Stripe Donation →</a>
+            <p style="font-size:.88rem; color:var(--muted); margin-top:8px; line-height:1.5;">🔒 Payments are processed securely by Stripe.</p>
           </div>
-          
         </div>
+        <p style="margin-top:16px; font-size:.97rem;">
+          <a href="donate.html" style="color:var(--navy); font-weight:700;">Learn more about all the ways to give — donations, in-kind gifts, volunteering, and sponsorships →</a>
+        </p>
       </div>
     </section>
 
@@ -921,7 +924,7 @@
         <div style="display:flex; gap:8px;">
           <a class="navBtn" style="background:var(--navy); color:#fff;" href="#events">Events</a>
           <a class="navBtn" style="background:var(--navy);" href="#contact-support">Contact</a>
-          <a class="navBtn" href="#contact-donate">Donate</a>
+          <a class="navBtn" href="donate.html">Donate</a>
         </div>
       </div>
     </footer>
