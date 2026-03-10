@@ -66,7 +66,8 @@ sync_dir "$DOCS/img" "img"
 echo ""
 echo "Invalidating CloudFront distribution $DIST_ID ..."
 if ! $DRY_RUN; then
-  aws cloudfront create-invalidation \
+  # MSYS_NO_PATHCONV=1 prevents Git Bash on Windows from mangling /paths into Windows paths
+  MSYS_NO_PATHCONV=1 aws cloudfront create-invalidation \
     --distribution-id "$DIST_ID" \
     --paths "/index.html" "/donate.html" "/img/*" \
     --query 'Invalidation.{Id:Id,Status:Status}' \
