@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="color-scheme" content="light" />
+  <title>Ways to Give — Oakridge Reignited</title>
+  <meta name="description" content="Support Oakridge Private School. Donate online, give in-kind, volunteer, or become a corporate sponsor." />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg: #ffffff;
+      --gray: #f4f4f4;
+      --ink: #0b1220;
+      --muted: #3a4a60;
+      --navy: #132b52;
+      --blue: #3e4a95;
+      --red: #b01f2e;
+      --subhead-color: #e60513;
+      --line: rgba(19,43,82,.15);
+      --max: 1040px;
+      font-size: 17px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: hidden; scroll-behavior: smooth; }
+    body{
+      font-family: 'Manrope', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--navy); }
+
+    /* ── Layout ── */
+    .inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .section-pad { padding-top: 48px; padding-bottom: 48px; }
+    @media (min-width: 768px){ .section-pad { padding-top: 64px; padding-bottom: 64px; } }
+
+    /* ── Sticky nav ── */
+    .topbar{
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .topbarInner{
+      max-width: var(--max); margin: 0 auto;
+      padding: 5px 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .navBackLink{
+      display: inline-flex; align-items: center; gap: 6px;
+      font-weight: 700; font-size: .9rem; color: var(--navy);
+      text-decoration: none;
+    }
+    .navBackLink:hover { text-decoration: underline; }
+    .navBtn{
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 34px; padding: 6px 14px;
+      border-radius: 6px;
+      font-family: 'Manrope', sans-serif;
+      font-size: .82rem; font-weight: 800;
+      text-decoration: none; white-space: nowrap;
+      background: var(--red); color: #fff; border: none;
+    }
+    .navLinks{ display: flex; gap: 8px; align-items: center; }
+    .navTextLink{
+      font-size: .88rem; font-weight: 700; color: var(--navy);
+      text-decoration: none; padding: 4px 8px;
+    }
+    .navTextLink:hover { text-decoration: underline; }
+    @media (max-width: 599px){ .navExtra { display: none; } }
+
+    /* ── Hero ── */
+    .heroSection{ padding-top: 40px; padding-bottom: 48px; }
+    .heroGrid{
+      display: grid; grid-template-columns: 1fr; gap: 28px; align-items: center;
+    }
+    @media (min-width: 820px){
+      .heroGrid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    .heroSection h1{
+      font-size: clamp(2.6rem, 8vw, 4rem); font-weight: 800;
+      color: var(--ink); letter-spacing: -0.02em;
+      line-height: 1.0; margin-bottom: 20px;
+    }
+    .heroSection h2{
+      font-size: clamp(1.2rem, 3.5vw, 1.5rem); font-weight: 800;
+      color: var(--ink); letter-spacing: -0.01em;
+      line-height: 1.2; margin-bottom: 14px;
+    }
+    .heroSection p{
+      font-size: 1rem; color: var(--muted); line-height: 1.65; margin-bottom: 12px;
+    }
+    .heroSection p:last-child { margin-bottom: 0; }
+    .heroImgWrap{
+      border-radius: 8px; overflow: hidden;
+      aspect-ratio: 4/3; background: var(--navy);
+    }
+    .heroImgWrap img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ── Contact strip (gray) ── */
+    .contactStrip{ background: var(--gray); }
+    .contactStrip p{ font-size: 1.05rem; color: var(--ink); line-height: 1.62; }
+    .contactStrip a{ color: var(--ink); font-weight: 700; text-decoration: underline; }
+    @media (min-width: 768px){ .contactStrip p { font-size: 1.18rem; } }
+
+    /* ── Donate ── */
+    .donateSection h2{
+      font-size: 1.38rem; font-weight: 800; color: var(--ink);
+      letter-spacing: -0.01em; margin-bottom: 14px;
+    }
+    .donateLead{
+      font-size: 1.02rem; color: var(--ink); line-height: 1.65; margin-bottom: 10px;
+    }
+    .donateSub{
+      font-size: .97rem; color: var(--muted); line-height: 1.65; margin-bottom: 20px;
+    }
+    .donateNote{
+      margin-top: 12px; font-size: .88rem; color: var(--muted); line-height: 1.55;
+    }
+    .donateBtn{
+      display: block; width: 100%; padding: 16px;
+      background: var(--red); color: #fff;
+      text-align: center; font-weight: 800; font-size: 1.08rem;
+      border-radius: 6px; text-decoration: none;
+      letter-spacing: -0.01em; max-width: 480px;
+    }
+    .donateBtn:hover { background: #8f1a24; }
+
+    /* ── In-Kind (gray) ── */
+    .inKindSection{ background: var(--gray); }
+    .inKindGrid{
+      display: grid; grid-template-columns: 1fr; gap: 28px; align-items: start;
+    }
+    @media (min-width: 820px){
+      .inKindGrid { grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    }
+    .inKindImgWrap{
+      border-radius: 8px; overflow: hidden; aspect-ratio: 4/3;
+    }
+    .inKindImgWrap img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+    .inKindContent h2{
+      font-size: 1.38rem; font-weight: 800; color: var(--ink);
+      letter-spacing: -0.01em; margin-bottom: 12px;
+    }
+    .inKindContent p{
+      font-size: .97rem; color: var(--muted); line-height: 1.62; margin-bottom: 12px;
+    }
+    .inKindContent p:last-child { margin-bottom: 0; }
+    .fieldList{
+      margin: 12px 0 0; padding: 0; list-style: none;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .fieldList li{
+      display: flex; align-items: baseline; gap: 8px;
+      font-size: .95rem; color: var(--muted); line-height: 1.4;
+    }
+    .fieldList li::before{ content: '–'; color: var(--navy); font-weight: 700; flex-shrink: 0; }
+    .inKindPlaceholder{
+      margin-top: 14px; border: 1.5px dashed rgba(19,43,82,.22);
+      border-radius: 8px; padding: 18px;
+      background: rgba(19,43,82,.03); text-align: center;
+    }
+    .inKindPlaceholder p{ font-size: .95rem; color: var(--muted); margin: 0; }
+
+    /* ── Volunteer ── */
+    .volunteerSection h2{
+      font-size: 1.38rem; font-weight: 800; color: var(--ink);
+      letter-spacing: -0.01em; margin-bottom: 10px;
+    }
+    .volunteerLead{
+      font-size: 1rem; color: var(--muted); line-height: 1.65; margin-bottom: 16px;
+    }
+    .formWrap{
+      border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff;
+    }
+    .formWrap iframe{ display: block; width: 100%; border: 0; }
+
+    /* ── Collapsible form toggle ── */
+    .formToggle{ margin-top: 0; }
+    .formToggleSummary{
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 13px 16px; cursor: pointer; list-style: none;
+      background: rgba(19,43,82,.06);
+      border: 1.5px dashed rgba(19,43,82,.22);
+      border-radius: 8px;
+      font-weight: 800; font-size: .97rem; color: var(--navy);
+      gap: 10px; transition: background .15s;
+    }
+    .formToggleSummary::-webkit-details-marker { display: none; }
+    .formToggleSummary:hover { background: rgba(19,43,82,.10); }
+    .formToggle[open] .formToggleSummary{
+      border-bottom-left-radius: 0; border-bottom-right-radius: 0;
+      border-bottom-color: transparent;
+    }
+    .formToggle[open] .formChevron{ transform: rotate(90deg); }
+    .formChevron{ flex-shrink:0; color:var(--navy); opacity:.5; transition: transform .2s ease; }
+    .formToggle .formWrap{
+      margin-top: 0; border-top-left-radius: 0; border-top-right-radius: 0; border-top: none;
+    }
+
+    /* ── Corporate Sponsorship (gray) ── */
+    .sponsorSection{ background: var(--gray); text-align: center; }
+    .sponsorSection h2{
+      font-size: 1.38rem; font-weight: 800; color: var(--ink);
+      letter-spacing: -0.01em; margin-bottom: 12px;
+    }
+    .sponsorSection p{
+      font-size: 1rem; color: var(--muted); line-height: 1.65;
+      max-width: 52ch; margin: 0 auto 8px;
+    }
+    .sponsorSection p:last-child { margin-bottom: 0; }
+
+    /* ── Thank you sponsors ── */
+    .thanksSection{ text-align: center; }
+    .thanksSection h2{
+      font-size: 1.6rem; font-weight: 800; color: var(--ink);
+      letter-spacing: -0.01em; margin-bottom: 28px;
+    }
+    .logoRow{
+      display: flex; flex-wrap: wrap; justify-content: center;
+      align-items: center; gap: 40px;
+    }
+    .logoItem{ display: block; }
+    .logoItem img{ height: 110px; width: auto; display: block; }
+
+    /* ── Footer ── */
+    footer{
+      margin-top: 24px; border-top: 1px solid var(--line);
+      padding-top: 18px; color: var(--muted);
+      font-size: .95rem; line-height: 1.62;
+    }
+    .footInner{ max-width: var(--max); margin: 0 auto; padding: 0 24px 64px; }
+    .footName{ color: var(--navy); font-weight: 800; font-size: 1rem; margin-bottom: 4px; }
+    .footLinks{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .footLink{
+      display: inline-flex; align-items: center;
+      min-height: 40px; padding: 6px 12px;
+      border: 1px solid var(--line); border-radius: 6px;
+      background: #fff; color: var(--navy);
+      font-weight: 800; font-size: .9rem;
+      text-decoration: none; white-space: nowrap;
+    }
+    .footDisclaimer{ margin-top: 12px; font-size: .88rem; color: var(--muted); }
+
+    /* ── QR Share box ── */
+    .shareBox{
+      display: flex; align-items: center; gap: 14px;
+      margin-top: 16px; padding: 12px 14px;
+      border: 1px solid var(--line); border-radius: 8px; background: #fff;
+    }
+    .qrWrap{ flex-shrink: 0; width: 72px; height: 72px; }
+    .qrWrap canvas, .qrWrap img { width: 72px !important; height: 72px !important; display: block; }
+    .shareBox .shareText strong{
+      display: block; font-weight: 800; color: var(--navy); font-size: .9rem; margin-bottom: 2px;
+    }
+    .shareBox .shareText p{ font-size: .82rem; color: var(--muted); line-height: 1.4; margin: 0; }
+
+    @media (prefers-reduced-motion: reduce){ html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <div class="topbar" role="region" aria-label="Navigation">
+    <div class="topbarInner">
+      <a class="navBackLink" href="https://oakridgereignited.org">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to home
+      </a>
+      <div class="navLinks">
+        <a class="navTextLink navExtra" href="#donate">Donate</a>
+        <a class="navTextLink navExtra" href="#in-kind">In-Kind</a>
+        <a class="navTextLink navExtra" href="#volunteer">Volunteer</a>
+        <a class="navTextLink navExtra" href="#sponsors">Sponsors</a>
+        <a class="navBtn" href="#donate">Donate Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── HERO ── -->
+  <section class="heroSection inner">
+    <div class="heroGrid">
+      <div class="heroText">
+        <h1>Ways to Give</h1>
+        <h2>Invest in the Future of Oakridge</h2>
+        <p>Oakridge is entering a bold new chapter — one rooted in faith, strengthened by community, and committed to academic excellence for every child. Your generosity directly fuels this mission.</p>
+        <p>Every gift supports innovative programs, academics, character development, and a diverse, welcoming environment where students are known and loved. As we step into an exciting new era of growth and excellence, your support makes it possible. Give today and join us in building the future.</p>
+      </div>
+      <div class="heroImgWrap">
+        <img src="img/community-building-together.png"
+             alt="Oakridge Community — Building Together" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT STRIP ── -->
+  <div class="contactStrip">
+    <div class="inner section-pad" style="padding-top:28px; padding-bottom:28px;">
+      <p>To discuss a donation, planned giving, or a partnership, contact our donations team directly. <a href="mailto:donations@oakridgeschool.org">donations@oakridgeschool.org</a></p>
+    </div>
+  </div>
+
+  <!-- ── DONATE ── -->
+  <section class="donateSection inner section-pad" id="donate">
+    <h2>Donate</h2>
+    <p class="donateLead">Your gift supports Oakridge Private School — a 501(c)(3) nonprofit. Click below to donate any amount. You'll be taken to a secure Stripe page where you can give right away.</p>
+    <a class="donateBtn" href="https://donate.stripe.com/7sY28qgPFcGn5mE6Mz2go00" target="_blank" rel="noopener">
+      Give Now — Secure Stripe Donation →
+    </a>
+    <p class="donateNote">🔒 Payments are processed securely by Stripe.</p>
+  </section>
+
+  <!-- ── IN-KIND DONATION ── -->
+  <section class="inKindSection" id="in-kind">
+    <div class="inner section-pad">
+      <div class="inKindGrid">
+        <div class="inKindImgWrap">
+          <img src="img/teachers-inspire-students-thrive.png"
+               alt="Oakridge teachers — Where Teachers Inspire and Students Thrive" />
+        </div>
+        <div class="inKindContent">
+          <h2>In-Kind Donation</h2>
+          <p>Support Oakridge with goods, services, or materials. Every in-kind contribution — large or small — directly benefits our students and programs.</p>
+          <p>To submit an in-kind donation, please provide:</p>
+          <ul class="fieldList">
+            <li>Name</li>
+            <li>Organization / Company Name (if applicable)</li>
+            <li>Email</li>
+            <li>Donation Details</li>
+            <li>Delivery Method (Drop-off, Pick-up, or Shipped)</li>
+            <li>Additional Info</li>
+          </ul>
+          <div class="inKindPlaceholder" style="margin-top:18px;">
+            <p>In-Kind Donation Form coming soon.<br>In the meantime, please email <a href="mailto:donations@oakridgeschool.org" style="color:var(--navy); font-weight:700;">donations@oakridgeschool.org</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── VOLUNTEER ── -->
+  <section class="volunteerSection inner section-pad" id="volunteer">
+    <h2>Volunteer</h2>
+    <p class="volunteerLead">Want to give your time to Oakridge? We'd love your help. Click below to open the volunteer signup form — tell us about yourself, your availability, and how you'd like to get involved.</p>
+    <details class="formToggle">
+      <summary class="formToggleSummary">
+        <span>Open Volunteer Signup Form</span>
+        <svg class="formChevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </summary>
+      <div class="formWrap">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSeH6MtRP2wfTZjSs7Z3XDXvbPFQJ5Yt0hyea-m_O6AsjbPhTA/viewform?embedded=true"
+          height="2200"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          title="Volunteer signup form">Loading…</iframe>
+      </div>
+    </details>
+  </section>
+
+  <!-- ── CORPORATE SPONSORSHIP ── -->
+  <section class="sponsorSection" id="sponsorship">
+    <div class="inner section-pad">
+      <h2>Corporate Sponsorship</h2>
+      <p>Oakridge is proud to partner with businesses that believe in investing in the community and students. Reach out today to learn how your company can make a difference for the next generation of leaders.</p>
+      <p>Contact us at <a href="mailto:donations@oakridgeschool.org" style="color:var(--navy); font-weight:700;">donations@oakridgeschool.org</a></p>
+    </div>
+  </section>
+
+  <!-- ── SPONSORS ── -->
+  <section class="thanksSection inner section-pad" id="sponsors">
+    <h2>Thank you to our sponsors</h2>
+    <div class="logoRow">
+      <a class="logoItem" href="https://butterbuzzcoffee.com/pages/orange-location" target="_blank" rel="noopener">
+        <img src="img/sponsor-better-buzz.png" alt="Better Buzz Coffee Roasters" />
+      </a>
+      <a class="logoItem" href="https://www.tiddlywinkstoc.com/" target="_blank" rel="noopener">
+        <img src="img/sponsor-tiddlywinks.jpg" alt="Tiddlywinks Toys &amp; Games" />
+      </a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footInner">
+      <div class="footName">Oakridge Private School</div>
+      <div>19111 Villa Park Rd, Orange, CA 92869 &nbsp;&middot;&nbsp; (714) 288-1432</div>
+      <div class="footLinks">
+        <a class="footLink" href="https://oakridgereignited.org">← Main Site</a>
+        <a class="footLink" href="https://www.oakridgeschool.org/" target="_blank" rel="noopener">
+          <img src="https://www.oakridgeschool.org/pics/school_logo.svg" style="width:20px;height:20px;margin-right:6px;flex-shrink:0;" alt="" />
+          Official Website
+        </a>
+        <a class="footLink" href="https://www.instagram.com/oakridgeschool/?hl=en" target="_blank" rel="noopener">
+          <svg style="width:18px;height:18px;margin-right:6px;flex-shrink:0;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="#132b52" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="4" stroke="#132b52" stroke-width="2" fill="none"/><circle cx="17.5" cy="6.5" r="1.2" fill="#132b52"/></svg>
+          Instagram
+        </a>
+        <a class="footLink" href="https://www.facebook.com/oakridgeprivateschool/" target="_blank" rel="noopener">
+          <svg style="width:18px;height:18px;margin-right:6px;flex-shrink:0;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#132b52" d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99H7.9V12h2.54V9.77c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.12 22 16.99 22 12z"/></svg>
+          Facebook
+        </a>
+        <a class="footLink" href="mailto:support@oakridgeschool.org">support@oakridgeschool.org</a>
+        <a class="footLink" href="mailto:donations@oakridgeschool.org">donations@oakridgeschool.org</a>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; margin-top:12px; flex-wrap:wrap;">
+        <a href="https://www.oakridgeschool.org/" target="_blank" rel="noopener" aria-label="Oakridge Private School official website">
+          <img src="https://www.oakridgeschool.org/pics/school_logo.svg" style="height:28px;width:28px;display:block;opacity:.6;" alt="Oakridge Private School" />
+        </a>
+        <img src="https://communityml.github.io/oakridge/img/beart.png" style="height:28px;width:auto;display:block;opacity:.6;" alt="Oakridge Reignited" />
+        <p class="footDisclaimer" style="margin:0;">Oakridge is a 501(c)(3) nonprofit. All donations are tax-deductible to the fullest extent allowed by law. This is a community-led effort and not an official publication of the school.</p>
+      </div>
+      <div class="shareBox">
+        <div class="qrWrap" id="qrcode"></div>
+        <div class="shareText">
+          <strong>Share This Page</strong>
+          <p>Point a phone camera at the QR code to share the donation page.</p>
+          <p style="font-size:.78rem; font-weight:700; color:var(--navy); opacity:.55; margin-top:4px;">oakridgereignited.org/donate.html</p>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-top:18px; padding-top:14px; border-top:1px solid var(--line);">
+        <a class="navBackLink" href="https://oakridgereignited.org">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Main Site
+        </a>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <a class="navBtn" style="background:var(--navy); color:#fff;" href="#donate">Donate</a>
+          <a class="navBtn" style="background:var(--navy); color:#fff;" href="#in-kind">In-Kind</a>
+          <a class="navBtn" style="background:var(--navy); color:#fff;" href="#volunteer">Volunteer</a>
+          <a class="navBtn" style="background:var(--navy); color:#fff;" href="#sponsors">Sponsors</a>
+          <a class="navBtn" href="#donate">Donate Now</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    new QRCode(document.getElementById('qrcode'), {
+      text: 'https://oakridgereignited.org/donate.html',
+      width: 72, height: 72,
+      colorDark: '#132b52', colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  </script>
+</body>
+</html>
