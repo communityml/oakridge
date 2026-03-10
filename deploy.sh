@@ -3,7 +3,6 @@
 #
 # Prerequisites:
 #   - AWS CLI installed and configured (aws configure, or IAM role, or env vars)
-#   - Copy your approved preview version to docs/index.html and docs/donate.html first
 #
 # Usage:
 #   ./deploy.sh            — deploy everything
@@ -12,17 +11,10 @@
 set -euo pipefail
 
 # ── Config ─────────────────────────────────────────────────────────────────────
-# Load from .env if present (never commit .env — see .env.example)
-if [ -f .env ]; then
-  set -a
-  source .env
-  set +a
-fi
-
-: "${BUCKET:?Set BUCKET in .env or environment}"
-: "${DIST_ID:?Set DIST_ID in .env or environment}"
-REGION="${REGION:-us-west-2}"
-S3_PREFIX="${S3_PREFIX:-}"   # e.g. "origin/" — trailing slash required if set
+BUCKET="www-oakridge-reignited"
+DIST_ID="E3RV0FEEMEEB0Z"
+REGION="us-west-2"
+S3_PREFIX="origin/"
 DOCS="docs"
 
 DRY_RUN=false
